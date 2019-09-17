@@ -1,0 +1,268 @@
+﻿@model IEnumerable<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>
+@{
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail", "Home", new { Id = ViewBag.GammingId })">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="@Url.Content(ViewBag.Gamming)" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>GAMMING</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new { Id =ViewBag.GammingId})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.DoanhNhanId})">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="@Url.Content(ViewBag.DoanhNhan)" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>DOANH NHÂN</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=ViewBag.DoanhNhanId})" class="cta-btn">Ghé thăm <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6" onclick="location.href='@Url.Action("PageProductDetail","Home",new {Id=ViewBag.DoHoaId})">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="@Url.Content(ViewBag.DoHoa)" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>ĐỒ HỌA</h3>
+                        <a href="@Url.Action("PageProductDetail","Home",new {Id=ViewBag.DoHoaId})" class="cta-btn">Ghé thăm  <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">SẢN PHẨM MỚI</h3>
+                    <div class="section-nav">
+                            <ul class="section-tab-nav tab-nav">
+                                <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
+                                <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
+                                <li><a data-toggle="tab" href="#tab2">Cameras</a></li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-2">
+                                <!-- select 5 cái -->
+                                <!-- product -->
+
+                                @foreach (var item in Model)
+                                {
+                                    <div class="product">
+                                        <div class="product-img" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@sp=item.Name,@Id=item.Id })'">
+                                            <img src="@Url.Content(item.UrlImage)">
+                                        </div>
+                                        <div class="product-body" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@sp=item.Name,@Id=item.Id })'">
+                                            <p class="product-category">@item.CategoryName</p>
+                                            <h3 class="product-name">
+                                                <a href="@Url.RouteUrl("xemchitiet", new {@id=item.Id,@sp=item.Name })">@item.Name</a>
+                                            </h3>
+                                            @if (item.Price == 0)
+                                            {
+                                                <h4 class="product-price">Liên hệ</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
+                                            }
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            @*<div class="product-btns">
+                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                                </div>*@
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn addCart">
+                                                @Html.Hidden("productId", item.Id)
+                                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                                            </button>
+                                        </div>
+                                        @*<span>
+                                                 @Ajax.ActionLink("Thêm vào giỏ hàng ajax","ThemGioHangAjax","GioHang",new { @productId =item.Id},
+                                            new AjaxOptions { HttpMethod="GET",UpdateTargetId= "divGioHang",InsertionMode=InsertionMode.Replace },null)
+                                             </span>*@
+                                    </div>
+                                }
+                                <!-- /product -->
+                            </div>
+                            <div id="slick-nav-2" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
+                                <!-- product -->
+                                @foreach (var item in  (List<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>)ViewBag.ProductList)
+                                {
+                                    <div class="product">
+
+                                        <div class="product">
+                                            <div class="product-img" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@id=item.Id,@sp=item.Name })'">
+                                                <img src="@Url.Content(item.UrlImage)" alt="">
+                                            </div>
+                                            <div class="product-body" onclick="location.href='@Url.RouteUrl("xemchitiet", new {@id=item.Id,@sp=item.Name })'">
+                                                <p class="product-category">@item.CategoryName</p>
+                                                <h3 class="product-name"><a href="#">@item.Name</a></h3>
+                                                <h4 class="product-price">@item.Price.ToString("#,##") VNĐ</h4>
+                                                <div class="product-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="product-btns">
+                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+
+                                                    </div>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <button class="add-to-cart-btn addCart">
+                                                    @Html.Hidden("productId", item.Id)
+                                                    <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                     //product 
+                                }
+                            </div>
+                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newsletter">
+                    <p>Nhập Email để nhận thông tin <strong>MỚI NHẤT</strong></p>
+                    <form method="post" action="/Home/GetFormEmail">
+                        <input class="input" type="email" placeholder="Nhập Email của bạn" name="email">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Nhận</button>
+                    </form>
+                    <ul class="newsletter-follow">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+@*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>*@
+@*<script>
+        $(document).ready(function () {
+            const { value: email } = Swal.fire({
+                title: 'Nhận thông tin về UETShop',
+                input: 'email',
+                inputPlaceholder: 'Nhập email của bạn'
+            })
+            $(".swal2-input").keypress(function (e) {
+
+                if (e.which === 13) {
+                    alert(1);
+                    var a = $(".swal2-input").val();
+                    Swal.fire(
+                        'Đã xác nhận',
+                        'Cảm ơn quý khách đã ghé thăm',
+                        'success'
+                    )
+                }
+            });
+            if (email) {
+                Swal.fire('Xác nhận thành công : ' + email)
+            }
+            $(".swal2-confirm").click(function () {
+                var email = $(".swal2-input").val();
+                $.ajax({
+                    url: "/Home/GetFormEmail",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ email: email }),
+                    success: function (response) {
+                        if (response) {
+                            Swal.fire(
+                                'Đã xác nhận',
+                                'Cảm ơn quý khách đã ghé thăm',
+                                'success'
+                            )
+                        }
+                    }
+                });
+
+
+            });
+
+        });
+
+</script>*@

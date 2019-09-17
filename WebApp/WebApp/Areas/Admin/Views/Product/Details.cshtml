@@ -1,0 +1,123 @@
+﻿@model WebApp.Areas.Admin.Models.ViewModels.ProductViewModel
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+<h2>CHI TIẾT</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PublicationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+            
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+            <span>g</span>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+            
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+            <span>mm</span>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Width)
+            <span>mm</span>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productInStock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.productInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlImage)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.UrlImage)" style="width:50px;height:50px;" alt="Alternate Text" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierName)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ManufacturerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManufacturerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <button class="btn btn-success">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @style = "color:black;text-decoration:none;" })
+    </button>
+    <button class="btn btn-danger">
+        @Html.ActionLink("Back to List", "Index",null, new { @style = "color:black;text-decoration:none;" })
+    </button>
+    
+</p>
+<br />

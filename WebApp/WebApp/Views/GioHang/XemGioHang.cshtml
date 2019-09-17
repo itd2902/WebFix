@@ -1,0 +1,177 @@
+﻿@using WebApp.Models.ViewModels
+@model List<ItemGioHang>
+@{
+
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+    
+}
+
+@if (Model.Count == 0)
+{
+    <h1>Bạn chưa đặt sản phẩm nào !</h1>
+}
+else
+{
+    <div class="display_cart container">
+        <table class="table">
+            <tr>
+                <td>Mã sản phẩm</td>
+                <td>Tên sp</td>
+                <td>Hình ảnh</td>
+                <td>Đơn giá</td>
+                <td>Số lượng</td>
+                <td>Thành tiền</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.ProductCode</td>
+                    <td>@item.ProductName</td>
+                    <td><img src="@Url.Content(item.ProductImage)" width="100" height="100" /></td>
+                    <td>@item.ProductPrice.ToString("#,##") VNĐ</td>
+                    <td>x @item.QuantityProduct</td>
+                    <td>@item.TotalPrice.ToString("#,##") VNĐ</td>
+                    <td>@Html.ActionLink("Sửa", "SuaGioHang", new { @productId = item.ProductCode })</td>
+                    <td>@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.ProductCode })</td>
+                </tr>
+            }
+
+        </table>
+
+        <div class="pull-right total-price">
+
+            <p>Tổng tiền : <span>@ViewBag.TotalPrice.ToString("#,##")</span> VNĐ</p>
+        </div>
+        <div class="divDatHang">
+            @using (Html.BeginForm("DatHang", "GioHang"))
+            {
+                @*Thiết kế form lưu thông tin khách hnafg chưa có tài khoản*@
+            if (Session["username"] != null)
+            {
+
+                    <button class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDH" >Đặt hàng</button>
+                    @*@Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })*@
+                }
+                else
+                {
+                    <div class="container showInfo">
+                        <div class="row">
+                            <div class="col-md-8 col-lg-8">
+                                <div class="ThongTinMuaHang">
+                                    <ul>
+                                        <li>
+                                            <p align="center" colspan="2"><b>Điền thông tin đặt hàng</b></p>
+                                        </li>
+                                        <li>
+                                            <span>Họ</span>
+                                            <div>
+                                                @Html.TextBox("FistName", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="HoKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Tên</span>
+                                            <div>
+                                                @Html.TextBox("LastName", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="TenKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Email</span>
+                                            <div>
+                                                @Html.TextBox("Email", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="EmailKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Địa chỉ</span>
+                                            <div>
+                                                @Html.TextArea("Address", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="AddressKh"></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>Số điện thoại</span>
+                                            <div>
+                                                @Html.TextBox("PhoneNumber", null, new { @class = "form-control" })
+                                                <p style="color:red;" id="PhoneNumberKh"></p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row btnUp">
+                            <input class="btn btn-danger" type="submit" value="Đặt hàng" id="btnDatHang" />
+                            @*@Html.ActionLink("Mua tiếp", "Index", "Home", new { @class = "btn btn-success" })*@
+                        </div>
+                        <br />
+                    </div>
+                    <br />
+
+                }
+
+
+            }
+
+        </div>
+
+    </div>
+    <br />
+}
+<script>
+
+    $("#btnDatHang").click(function () {
+        var bug = 0;
+        if ($("#FistName").val() == '') {
+            $("#HoKh").text("Tên họ khách hàng không được bỏ trống");
+            bug++;
+        }
+
+        else {
+            $("#HoKh").text("");
+        }
+        if ($("#LastName").val() == '') {
+            $("#TenKh").text("Tên khách hàng không được bỏ trống");
+            bug++;
+        }
+
+        else {
+            $("#TenKh").text("");
+        }
+        if ($("#Address").val() == '') {
+            $("#AddressKh").text("Địa chỉ khách hàng không được bỏ trống");
+            bug++;
+        }
+        else {
+            $("#AddressKh").text("");
+        }
+        //định dạng email
+        dinhdang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
+        KTemail = dinhdang.test($('#Email').val());
+        if (!KTemail) {
+            $('#EmailKh').text("Email không hợp lệ")
+            bug++;
+        }
+        else {
+            $("#EmailKh").text("");
+        }
+        //định dạng số điện thoại
+        phoneNumber = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+        KTPhoneNumber = phoneNumber.test($('#PhoneNumber').val());
+        if (!KTPhoneNumber) {
+            $('#PhoneNumberKh').text("Số điện thoại không hợp lệ")
+            bug++;
+        }
+        else {
+            $("#PhoneNumberKh").text("");
+        }
+        if (bug != 0) {
+            //ngăn form submit
+            return false;
+        }
+    });
+</script>
+

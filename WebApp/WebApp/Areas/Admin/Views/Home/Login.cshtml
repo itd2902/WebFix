@@ -1,0 +1,44 @@
+﻿@model WebApp.Models.ViewDto.LoginDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/Areas/Admin/Assets/css/css.css" rel="stylesheet" />
+</head>
+<body style="background-color:rgb(110, 195, 255);background-image:url(../../../../Assets/img/bg1.jpeg)">
+    <!------ Include the above in your HEAD tag ---------->
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="~/Assets/img/logo1.png" id="icon" alt="User Icon" />
+                
+            </div>
+            <h2>Đăng nhập</h2>
+            <!-- Login Form -->
+            @using (Html.BeginForm())
+            {
+                @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "fadeIn second", @id = "login" } })
+                <p id="TB_username" style="color:red;"></p>
+                @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password", @class = "fadeIn third", @id = "password" } })
+                <p id="TB_password" style="color:red;"></p>
+                <input type="submit" class="fadeIn fourth" value="Đăng nhập" id="btnDangNhap">
+            }
+            <p style="color:red;">@ViewBag.ThongBao</p>
+            <!-- Remind Passowrd -->
+            @*<div id="formFooter">
+                <a class="underlineHover" href="#">Quên mật khẩu?</a>
+            </div>*@
+        </div>
+    </div>
+    <script src="~/Assets/Index/Index.js"></script>
+</body>
+</html>
