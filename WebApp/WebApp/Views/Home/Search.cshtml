@@ -17,29 +17,16 @@
                     <h3 class="aside-title">Thể loại</h3>
                     <div class="checkbox-filter">
                         @{
-                            var listcategory = (List<WebApp.Areas.Admin.Models.ViewDto.CategoryDto>)ViewBag.ListCate;
-                            int count = 1;
-                            foreach (var item in listcategory)
+                            var dem = 1;
+                            foreach (var item in ViewBag.ListCate)
                             {
-                                var name = item.Name;
                                 <div class="input-checkbox">
-                                    <input type="checkbox" id="category-@count">
+                                    <input type="checkbox" id="brand-@dem">
                                     <span>-</span>
-                                    @if (name == "Gamming")
-                                    {
-                                        <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = Session["GammingId"] })">@item.Name</a>
-                                    }
-                                    else if (name == "Doanh nhân")
-                                    {
-                                        <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = Session["DoanhNhanId"] })">@item.Name</a>
-                                    }
-                                    else if (name == "Đồ họa")
-                                    {
-                                        <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = Session["DoHoaId"] })">@item.Name</a>
-                                    }
-                                    <small>(@item.QuantityCate)</small>
+                                    <a href="@Url.Action("PageProductDetail", "Home", new { page = 1, Id = item.Id }) " class="clickManu">@item.Name</a>
+                                    @*<small>(@item.QuantityCate)</small>*@
                                 </div>
-                                count++;
+                                dem++;
                             }
                         }
                     </div>

@@ -408,7 +408,6 @@
     <Folder Include="AppFile\Images\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Assets\js\" />
-    <Folder Include="Assets\Invoice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

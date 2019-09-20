@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201909130109380_adddatabase.Designer.cs">
       <DependentUpon>201909130109380_adddatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909201936408_update-image-category.cs" />
+    <Compile Include="Migrations\201909201936408_update-image-category.Designer.cs">
+      <DependentUpon>201909201936408_update-image-category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909130109380_adddatabase.resx">
       <DependentUpon>201909130109380_adddatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201936408_update-image-category.resx">
+      <DependentUpon>201909201936408_update-image-category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

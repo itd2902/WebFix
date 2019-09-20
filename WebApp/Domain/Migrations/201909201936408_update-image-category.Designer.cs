@@ -7,13 +7,13 @@ namespace Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class update : IMigrationMetadata
+    public sealed partial class updateimagecategory : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateimagecategory));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904100927417_update"; }
+            get { return "201909201936408_update-image-category"; }
         }
         
         string IMigrationMetadata.Source
