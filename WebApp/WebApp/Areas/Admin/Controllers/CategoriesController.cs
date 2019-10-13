@@ -19,7 +19,7 @@ namespace WebApp.Areas.Admin.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            var category = db.Categories.Where(w => w.IsDeleted == false).ToList();
+            var category = db.Categories.ToList();
             var categoryViewModel = Mapper.Map<IEnumerable<CategoryViewModel>>(category);
             return View(categoryViewModel);
         }

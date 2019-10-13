@@ -195,6 +195,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult DatHang(Customer cus)
         {
+            cus.Id = Guid.NewGuid();
             //Tạo đơn đặt hàng
             if (Session["GioHang"] == null)
             {
@@ -204,10 +205,10 @@ namespace WebApp.Controllers
             Customer customer = new Customer();
             if (Session["username"] == null)
             {
+                
                 //Thêm khách hàng vào bảng khách hàng đối vs khách hàng chưa có tài khoản
                 customer = cus;
                 db.Customers.Add(customer);
-                db.SaveChanges();
             }
             else
             {
@@ -218,7 +219,6 @@ namespace WebApp.Controllers
                 cus.Email = user.Email;
                 cus.PhoneNumber = user.PhoneNumber;
                 db.Customers.Add(cus);
-                db.SaveChanges();
             }
 
             //thêm đơn hàng
@@ -228,20 +228,21 @@ namespace WebApp.Controllers
             orders.Cancelled = CommonStatus.InActive;
             orders.Deleted = CommonStatus.InActive;
             orders.CustomerId = cus.Id;
-            db.Orders.Add(orders);
-            db.SaveChanges();//lưu lại để trong db phát sinh mã đơn đặt hàng
+            orders.Id = Guid.NewGuid();
+            db.Orders.Add(orders);//lưu lại để trong db phát sinh mã đơn đặt hàng
             //thêm chi tiết đơn đặt hàng
             List<ItemGioHang> lstGioHang = LayGioHang();
             foreach (var item in lstGioHang)
             {
-                OrderDetail orderDetails = new OrderDetail();
-                orderDetails.OrderId = orders.Id;
-                orderDetails.ProductId = item.ProductCode;
-                orderDetails.QuantityProduct = item.QuantityProduct;
-                orderDetails.BuyPrice = item.ProductPrice;
-                int countQuantityProduct = orderDetails.QuantityProduct;
-                (db.Products.Where(w => w.Id == orderDetails.ProductId).FirstOrDefault()).ProductInStock-=countQuantityProduct;
-                db.OrderDetails.Add(orderDetails);
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.Id = Guid.NewGuid();
+                orderDetail.OrderId = orders.Id;
+                orderDetail.ProductId = item.ProductCode;
+                orderDetail.QuantityProduct = item.QuantityProduct;
+                orderDetail.BuyPrice = item.ProductPrice;
+                int countQuantityProduct = orderDetail.QuantityProduct;
+                (db.Products.Where(w => w.Id == orderDetail.ProductId).FirstOrDefault()).ProductInStock-=countQuantityProduct;//cập nhật lại số lượng tồn trong kho
+                db.OrderDetails.Add(orderDetail);
             }
             db.SaveChanges();
             Session["GioHang"] = null;

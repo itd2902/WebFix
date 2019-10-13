@@ -285,3 +285,7 @@ input[type=text]:placeholder {
 #icon {
   width:60%;
 }
+.edit-color, .detail-color, .delete-color {
+    text-decoration: none;
+}
+
