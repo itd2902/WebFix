@@ -29,12 +29,12 @@ namespace Domain.Entities
         #region Relation
 
         [ForeignKey("Category")]
-        public Guid? CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public Guid? SupplierId { get; set; }
+        public int? SupplierId { get; set; }
         [ForeignKey("SupplierId")]
         public virtual Supplier Supplier { get; set; }
-        public Guid? ManufacturerId { get; set; }
+        public int? ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
 
         [NotMapped]

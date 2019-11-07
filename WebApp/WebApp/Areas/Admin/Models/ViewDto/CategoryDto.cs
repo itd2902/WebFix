@@ -9,6 +9,6 @@ namespace WebApp.Areas.Admin.Models.ViewDto
     {
         public string Name { get; set; }
         public int QuantityCate { get; set; }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

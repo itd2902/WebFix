@@ -50,15 +50,15 @@ namespace WebApp.Areas.Admin.Controllers
             int pageNumber = page ?? 1;
             return PartialView("_ManagerOrderPartialView",managerOrders.ToPagedList(pageNumber, pageSize));
         }
-        public PartialViewResult GetOrderDetail(Guid id)
+        public ActionResult GetOrderDetail(int id)
         {
             //get orderdetail from order by id
             var orderDetails = db.OrderDetails.Where(od => od.OrderId == id).OrderByDescending(o=>o.CreatedDate).ToList();
             var orderDetailsViewModel = Mapper.Map<IEnumerable<OrderDetailViewModel>>(orderDetails);
-            return PartialView("_OrderDetailPartialView", orderDetailsViewModel);
+            return View(orderDetailsViewModel);
         }
         //thiết kế giao diện hóa đơn
-        public ActionResult ExportOrder(Guid? Id)
+        public ActionResult ExportOrder(int? Id)
         {
             var lstOrder = db.OrderDetails.Where(w => w.OrderId == Id).ToList();
 
@@ -82,13 +82,10 @@ namespace WebApp.Areas.Admin.Controllers
             ViewBag.Customer = orderDetailDto;
             return View(lstOrder);
         }
-        public ActionResult ExportFilePDF(Guid? Id)
+        public ActionResult ExportFilePDF(int? Id)
         {
             TempData["OrderId"] = Id;
-            ActionAsPdf result = new ActionAsPdf("ExportOrder", new { Id=Id})
-            {
-                FileName = Server.MapPath("~/Assets/Invoice.pdf")
-            };
+            ActionAsPdf result = new ActionAsPdf("ExportOrder", new { Id = Id });
             return result;
         }
     }

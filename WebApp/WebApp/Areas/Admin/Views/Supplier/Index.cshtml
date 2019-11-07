@@ -15,11 +15,11 @@
 </div>
 <br />
 <h2>NHÀ CUNG CẤP</h2>
-<p>
-    <button class="btn btn-success addProduct" style="font-size:17px;">
-        @Html.ActionLink("Thêm mới", "Create")
-    </button>
-</p>
+<br />
+<div>
+        @Html.ActionLink("Thêm mới", "Create",null,new { @class="btn btn-primary"})
+</div>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -46,9 +46,9 @@
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            <button class="btn btn-success">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id })</button>
-            <button class="btn btn-default">@Html.ActionLink("Chi tiết", "Details", new { id = item.Id })</button>
-            <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</button>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }, new { @class = " btn btn-primary" })
+            @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @class = " btn btn-warning" })
+            @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

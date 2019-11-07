@@ -24,7 +24,7 @@ namespace Domain.Entities
 
 
         #region Relationship
-        public Guid? RoleId { get; set; }
+        public int? RoleId { get; set; }
         public virtual Role Role { get; set; }
         #endregion
     }

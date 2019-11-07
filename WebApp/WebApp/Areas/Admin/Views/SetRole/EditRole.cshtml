@@ -1,4 +1,4 @@
-﻿@model Domain.Entities.User
+﻿@model WebApp.Areas.Admin.Models.ViewModels.UserViewModel
 
 @{
     Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
@@ -31,7 +31,7 @@
                     @Html.DisplayNameFor(model => model.PhoneNumber)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Role.Name)
+                    @Html.DisplayNameFor(model => model.RoleName)
                 </th>
             </tr>
         </thread>
@@ -59,7 +59,7 @@
                 </td>
                 @if (item.Id == Model.Id)
                 {
-                <td>
+                <td style="max-width:150px;">
                     @Html.Hidden("Id", item.Id)
                     @Html.DropDownList("RoleId", null, new { @class = "form-control" })
                     <input type="submit" class="btn btn-success" id="submitEditRole" value="Lưu" />

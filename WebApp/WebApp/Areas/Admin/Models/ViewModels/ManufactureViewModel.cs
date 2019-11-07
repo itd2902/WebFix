@@ -9,8 +9,9 @@ namespace WebApp.Areas.Admin.Models.ViewModels
 {
     public class ManufactureViewModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập tên nhà sản xuất")]
+        [DisplayName("Tên nhà sx")]
         [MaxLength(250)]
         public string Name { get; set; }
         [DisplayName("Chi tiết")]

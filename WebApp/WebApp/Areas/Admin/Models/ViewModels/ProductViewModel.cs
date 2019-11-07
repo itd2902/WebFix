@@ -11,7 +11,7 @@ namespace WebApp.Areas.Admin.Models.ViewModels
 {
     public class ProductViewModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [StringLength(256)]
         [Required(ErrorMessage ="Vui lòng nhập tên sản phẩm.")]
         [DisplayName("Tên sp")]
@@ -48,20 +48,20 @@ namespace WebApp.Areas.Admin.Models.ViewModels
 		public string UrlImage { get; set; }
 
 		[DisplayName("Thể loại")]
-		public Guid? CategoryId { get; set; }
+		public int? CategoryId { get; set; }
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
         [DisplayName("Thể loại")]
 		public string CategoryName { get; set; }
 
 		[DisplayName("Nhà cung cấp")]
-		public Guid? SupplierId { get; set; }
+		public int? SupplierId { get; set; }
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
         [DisplayName("Nhà cung cấp")]
 		public string SupplierName { get; set; }
 		
 
 		[DisplayName("Hãng sản xuất")]
-        public Guid? ManufacturerId { get; set; }
+        public int? ManufacturerId { get; set; }
         [Required(ErrorMessage = "Vui lòng chọn ảnh sản phẩm.")]
 
         [DisplayName("Hãng sản xuất")]

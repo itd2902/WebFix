@@ -25,13 +25,8 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Categories/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             var category = db.Categories.Find(id);
             if (category == null)
             {
@@ -55,7 +50,6 @@ namespace WebApp.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var category = Mapper.Map<Category>(categoryViewModel);
-                category.Id = Guid.NewGuid();
                 category.Status = Domain.Enum.CommonStatus.Active;
                 db.Categories.Add(category);
                 db.SaveChanges();
@@ -66,7 +60,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Categories/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -104,7 +98,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -112,6 +106,7 @@ namespace WebApp.Areas.Admin.Controllers
             }
 
             var category = db.Categories.Find(id);
+
             if (category == null)
             {
                 return HttpNotFound();
@@ -123,28 +118,25 @@ namespace WebApp.Areas.Admin.Controllers
 
         // POST: Categories/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
-            
-            if (ModelState.IsValid) //check format data
+            Category category = db.Categories.Find(id);
+
+            if (category == null)
             {
-                Category category = db.Categories.Find(id);
-                if (category == null)
-                {
-                    return HttpNotFound();
-                }
-                List<Product> product = db.Products.Where(p => p.CategoryId == id).ToList();
-                foreach (var item in product)
-                {
-                    item.IsDeleted = true;
-                }
-                category.IsDeleted = true;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
 
-            return View();
+            List<Product> product = db.Products.Where(p => p.CategoryId == id).ToList();
 
+            foreach (var item in product)
+            {
+                db.Products.Remove(item);
+            }
+
+            db.Categories.Remove(category);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

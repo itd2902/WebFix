@@ -33,7 +33,7 @@ namespace WebApp.Controllers
         }
 
         //Thêm giỏ hàng thông thường load lại trang
-        //public ActionResult ThemGioHang(Guid productId, string strURL)//mã sản phẩm,đường link dẫn đến khi redirect
+        //public ActionResult ThemGioHang(int productId, string strURL)//mã sản phẩm,đường link dẫn đến khi redirect
         //{
         //    //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
         //    Product sp = db.Products.SingleOrDefault(n => n.Id == productId);
@@ -121,12 +121,8 @@ namespace WebApp.Controllers
         }
 
         //chỉnh sửa giỏ hàng
-        public ActionResult SuaGioHang(Guid productId)
+        public ActionResult SuaGioHang(int productId)
         {
-            if (productId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             List<ItemGioHang> lstItemGioHang = LayGioHang();
             //gán lst giỏ hàng vào viewbag để truy xuất và hiển thị trong view
             ViewBag.GioHang = lstItemGioHang;
@@ -166,7 +162,7 @@ namespace WebApp.Controllers
         }
 
         //Xử lý xóa giỏ hàng
-        public ActionResult XoaGioHang(Guid id)
+        public ActionResult XoaGioHang(int id)
         {
             //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
             Product sp = db.Products.SingleOrDefault(n => n.Id == id);
@@ -195,7 +191,6 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult DatHang(Customer cus)
         {
-            cus.Id = Guid.NewGuid();
             //Tạo đơn đặt hàng
             if (Session["GioHang"] == null)
             {
@@ -228,14 +223,12 @@ namespace WebApp.Controllers
             orders.Cancelled = CommonStatus.InActive;
             orders.Deleted = CommonStatus.InActive;
             orders.CustomerId = cus.Id;
-            orders.Id = Guid.NewGuid();
             db.Orders.Add(orders);//lưu lại để trong db phát sinh mã đơn đặt hàng
             //thêm chi tiết đơn đặt hàng
             List<ItemGioHang> lstGioHang = LayGioHang();
             foreach (var item in lstGioHang)
             {
                 OrderDetail orderDetail = new OrderDetail();
-                orderDetail.Id = Guid.NewGuid();
                 orderDetail.OrderId = orders.Id;
                 orderDetail.ProductId = item.ProductCode;
                 orderDetail.QuantityProduct = item.QuantityProduct;
@@ -250,7 +243,7 @@ namespace WebApp.Controllers
         }
 
         //Thêm giỏ hàng sử dụng Ajax
-        public ActionResult ThemGioHangAjax(Guid productId)//mã sản phẩm,đường link dẫn đến khi redirect
+        public ActionResult ThemGioHangAjax(int productId)//mã sản phẩm,đường link dẫn đến khi redirect
         {
             //kiểm tra sản phẩm thông qua mã sp tồn tại trong csdl hay không
             Product sp = db.Products.SingleOrDefault(n => n.Id == productId);

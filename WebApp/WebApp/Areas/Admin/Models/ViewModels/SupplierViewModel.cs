@@ -6,7 +6,7 @@ namespace WebApp.Areas.Admin.Models.ViewModels
 {
     public class SupplierViewModel
     {
-        public Guid Id { get; set; } 
+        public int Id { get; set; } 
 
         [Required(ErrorMessage = "Vui lòng nhập tên nhà cung cấp")]
         [MaxLength(250, ErrorMessage = "Tên nhà cung cấp không được quá 250 ký tự")]

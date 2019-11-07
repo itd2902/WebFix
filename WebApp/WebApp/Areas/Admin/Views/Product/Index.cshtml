@@ -18,7 +18,7 @@
 <h2>SẢN PHẨM</h2>
 
 
-<div id="productList">
+<div id="productList" class="container">
     @{
         Html.RenderAction("GetProductPagsing", "Product", new { page = 1 });
     }

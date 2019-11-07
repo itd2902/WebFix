@@ -26,7 +26,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -57,7 +57,6 @@ namespace WebApp.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var manufacturer = Mapper.Map<Manufacturer>(manufactureViewModel);
-                manufacturer.Id = Guid.NewGuid();
                 manufacturer.Status = Domain.Enum.CommonStatus.Active;
                 db.Manufacturers.Add(manufacturer);
                 db.SaveChanges();
@@ -68,7 +67,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -107,7 +106,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -126,7 +125,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         // POST: Manufacture/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             if (ModelState.IsValid)
             {

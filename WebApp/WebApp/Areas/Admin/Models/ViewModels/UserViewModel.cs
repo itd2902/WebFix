@@ -10,7 +10,7 @@ namespace WebApp.Areas.Admin.Models.ViewModels
     public class UserViewModel
     {
         [DisplayName("Id")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [DisplayName("Nhân viên")]
         public string UserName { get; set; }
         [DisplayName("Ngày tham gia")]
@@ -24,10 +24,8 @@ namespace WebApp.Areas.Admin.Models.ViewModels
         [DisplayName("Số ĐT")]
         public string PhoneNumber { get; set; }
         [DisplayName("Chức vụ")]
-        public Guid? RoleId { get; set; }
+        public int? RoleId { get; set; }
         [DisplayName("Chức vụ")]
         public string RoleName { get; set; }
-
-
     }
 }

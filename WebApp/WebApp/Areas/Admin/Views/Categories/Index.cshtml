@@ -16,14 +16,14 @@
 <h2>THỂ LOẠI</h2>
 @if (Model.Count() < 3)
 {
-    <p>
-        <button class="btn btn-primary addProduct" style="font-size:17px;">
-            @Html.ActionLink("Thêm mới", "Create")
-        </button>
-    </p>
+    <br />
+    <div>
+            @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+    <br />
 }
-<table class="table table-bordered">
-    <thead>
+<table class="table">
+    <thead class="thead-dark">
         <tr>
             <th scope="row" class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Name)
@@ -46,9 +46,9 @@
                     @Html.DisplayFor(modelItem => item.DisplayDescription)
                 </td>
                 <td class="col-sm-3">
-                    <button class="btn btn-info">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }, new { @class = "edit-color" })</button>
-                    <button class="btn btn-warning">@Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @class = "detail-color" })</button>
-                    <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "delete-color" })</button>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id }, new { @class = " btn btn-primary"})
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }, new { @class = " btn btn-warning" })
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
 

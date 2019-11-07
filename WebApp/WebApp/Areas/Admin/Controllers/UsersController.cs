@@ -19,7 +19,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -48,7 +48,6 @@ namespace WebApp.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.Id = Guid.NewGuid();
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -58,7 +57,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -89,7 +88,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Admin/Users/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -106,7 +105,7 @@ namespace WebApp.Areas.Admin.Controllers
         // POST: Admin/Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users.Find(id);
             db.Users.Remove(user);

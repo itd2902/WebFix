@@ -67,13 +67,9 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Manufacturer.cs" />
     <Compile Include="Enum\CommonStatus.cs" />
-    <Compile Include="Migrations\201909130109380_adddatabase.cs" />
-    <Compile Include="Migrations\201909130109380_adddatabase.Designer.cs">
-      <DependentUpon>201909130109380_adddatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909201936408_update-image-category.cs" />
-    <Compile Include="Migrations\201909201936408_update-image-category.Designer.cs">
-      <DependentUpon>201909201936408_update-image-category.cs</DependentUpon>
+    <Compile Include="Migrations\201910270835396_createdatabase.cs" />
+    <Compile Include="Migrations\201910270835396_createdatabase.Designer.cs">
+      <DependentUpon>201910270835396_createdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909130109380_adddatabase.resx">
-      <DependentUpon>201909130109380_adddatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909201936408_update-image-category.resx">
-      <DependentUpon>201909201936408_update-image-category.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910270835396_createdatabase.resx">
+      <DependentUpon>201910270835396_createdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

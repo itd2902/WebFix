@@ -6,6 +6,7 @@ using Domain.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -34,32 +35,39 @@ namespace WebApp.Areas.Admin.Controllers
         }
         
         //hàm chỉnh sửa quyền cho nhân viên
-        public ActionResult EditRole(Guid? Id)
+        public ActionResult EditRole(int? Id)
         {
             if(Id==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //var id = form.GetValues("item.Id");
-            //var roleId = form.GetValues("item.RoleId");
+
             var user = db.Users.Find(Id);
-            ViewBag.RoleId = new SelectList(db.Roles.ToList(), "Id", "Name",user.RoleId);
-            ViewBag.LstUser = db.Users.ToList();
-            return View(user);
-        }
-        [HttpPost]
-        public ActionResult EditRole(User user)
-        {
+            
             if(user==null)
             {
                 return HttpNotFound();
             }
-            var username = db.Users.SingleOrDefault(m => m.Id == user.Id);
-            if(username==null)
+            var userViewModel = Mapper.Map<UserViewModel>(user);
+            ViewBag.RoleId = new SelectList(db.Roles.ToList(), "Id", "Name",user.RoleId);
+            ViewBag.LstUser = db.Users.ToList();
+            
+            return View(userViewModel);
+        }
+        [HttpPost]
+        public ActionResult EditRole(UserViewModel userViewModel)
+        {
+            if(userViewModel == null)
             {
                 return HttpNotFound();
             }
-            username.RoleId = user.RoleId;
+            var user = db.Users.FirstOrDefault(m => m.Id == userViewModel.Id);
+            if(user == null)
+            {
+                return HttpNotFound();
+            }
+            user.RoleId = userViewModel.RoleId;
+            db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
 

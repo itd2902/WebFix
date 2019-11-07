@@ -10,12 +10,12 @@ namespace WebApp.Models.ViewModels
     public class ItemGioHang
     {
         public string ProductName { get; set; }
-        public Guid ProductCode { get; set; }
+        public int ProductCode { get; set; }
         public int QuantityProduct { get; set; }
         public double ProductPrice { get; set; }
         public string ProductImage { get; set; }
         public double TotalPrice { get; set; }
-        public ItemGioHang(Guid productCode)
+        public ItemGioHang(int productCode)
         {
             using (EcommerceDbContext db = new EcommerceDbContext())
             {
@@ -29,7 +29,7 @@ namespace WebApp.Models.ViewModels
 
             }
         }
-        public ItemGioHang(Guid productCode,int quantityProduct)
+        public ItemGioHang(int productCode,int quantityProduct)
         {
             using (EcommerceDbContext db = new EcommerceDbContext())
             {

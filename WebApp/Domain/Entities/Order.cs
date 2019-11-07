@@ -20,7 +20,7 @@ namespace Domain.Entities
         #endregion
         #region Relationship
         [ForeignKey("Customer")]
-        public Guid CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
         #endregion
     }

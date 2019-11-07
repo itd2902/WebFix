@@ -7,7 +7,7 @@ namespace WebApp.Areas.Admin.Models.ViewModels
 {
     public class CategoryViewModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập tên sản phẩm")]
         [DisplayName("Tên thể loại")]
         [MaxLength(250)]

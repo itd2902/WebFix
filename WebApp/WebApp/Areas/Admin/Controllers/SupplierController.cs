@@ -28,7 +28,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         #region Details
         // GET: Supplier/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -64,7 +64,6 @@ namespace WebApp.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var supplier = Mapper.Map<Supplier>(supplierViewModel);
-                supplier.Id = Guid.NewGuid();
                 supplier.Status = Domain.Enum.CommonStatus.Active;
                 db.Suppliers.Add(supplier);
                 db.SaveChanges();
@@ -76,7 +75,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         #region Edit
         // GET: Supplier/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -121,7 +120,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         #region Delete
         // GET: Supplier/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -140,7 +139,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         // POST: Supplier/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             Supplier supplier = db.Suppliers.Find(id);
             if (supplier == null)

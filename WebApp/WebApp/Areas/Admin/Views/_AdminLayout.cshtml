@@ -1,32 +1,17 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Trang quản trị</title>
-    <link href="~/Content/AdminLayout/css/bootstrap.css" rel="stylesheet" type='text/css' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Custom Theme files -->
-    <link href="~/Content/AdminLayout/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Assets/img/favicon.ico" rel="icon" type="image/x-icon" />
-    <!-- Custom Theme files -->
-    <script src="~/Content/AdminLayout/js/jquery.min.js"></script>
-    <link href="~/Assets/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/PagedList.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Trang quản trị</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/AdminLayout/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assets/img/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="~/Assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-    <link href="~/Content/AdminLayout/css/jqvmap.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <link href="~/Content/AdminLayout/css/nav.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="~/Content/AdminLayout/js/main.js"></script> <!-- Resource jQuery -->
 </head>
 <body>
     <div class="container">
@@ -61,50 +46,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="col-lg-9 content">
             @*<div class="home-strip">
-                @Html.Partial("SearchPartialView")
-                <div class="member">
-                    <p><a href="#"><i class="men"></i></a><a href="#">@Session["UserName"]</a></p>
-                    <div id="dd" class="wrapper-dropdown-2" tabindex="1">
-                        <span><img src="~/Content/AdminLayout/images/settings.png" /></span>
-                        <ul class="dropdown">
-                            <li><a href="/Admin/Home/Logout">Đăng xuất</a></li>
-                        </ul>
-                    </div>
-                    <!-----end-wrapper-dropdown-2---->
-                    <!-----start-script---->
-                    <script type="text/javascript">
-                        function DropDown(el) {
-                            this.dd = el;
-                            this.initEvents();
-                        }
-                        DropDown.prototype = {
-                            initEvents: function () {
-                                var obj = this;
-
-                                obj.dd.on('click', function (event) {
-                                    $(this).toggleClass('active');
-                                    event.stopPropagation();
-                                });
+                    @Html.Partial("SearchPartialView")
+                    <div class="member">
+                        <p><a href="#"><i class="men"></i></a><a href="#">@Session["UserName"]</a></p>
+                        <div id="dd" class="wrapper-dropdown-2" tabindex="1">
+                            <span><img src="~/Content/AdminLayout/images/settings.png" /></span>
+                            <ul class="dropdown">
+                                <li><a href="/Admin/Home/Logout">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                        <!-----end-wrapper-dropdown-2---->
+                        <!-----start-script---->
+                        <script type="text/javascript">
+                            function DropDown(el) {
+                                this.dd = el;
+                                this.initEvents();
                             }
-                        }
-                        $(function () {
+                            DropDown.prototype = {
+                                initEvents: function () {
+                                    var obj = this;
 
-                            var dd = new DropDown($('#dd'));
+                                    obj.dd.on('click', function (event) {
+                                        $(this).toggleClass('active');
+                                        event.stopPropagation();
+                                    });
+                                }
+                            }
+                            $(function () {
 
-                            $(document).click(function () {
-                                // all dropdowns
-                                $('.wrapper-dropdown-2').removeClass('active');
+                                var dd = new DropDown($('#dd'));
+
+                                $(document).click(function () {
+                                    // all dropdowns
+                                    $('.wrapper-dropdown-2').removeClass('active');
+                                });
+
                             });
-
-                        });
-                    </script>
+                        </script>
+                        <div class="clearfix"></div>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="clearfix">
+                <div class="clearfix">
 
-            </div>
+                </div>
             *@
             @{
                 Html.RenderAction("Index", "Statistic");
@@ -117,8 +102,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clearfix"></div>
             </div>
 
-            @RenderSection("scripts", required: false)
+
         </div>
     </div>
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/AdminLayout/js/main.js"></script>
+    <script src="~/Content/AdminLayout/js/jquery.min.js"></script>
+
 </body>
 </html>

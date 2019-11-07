@@ -32,7 +32,7 @@ namespace WebApp.Areas.Admin.Controllers
             return PartialView("_GetPagingProduct", productViewModel.ToPagedList(pageNumber, pageSize));
         }
         // GET: Products/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -73,7 +73,6 @@ namespace WebApp.Areas.Admin.Controllers
             if (file!=null)
             {
                 var product = Mapper.Map<Product>(productViewModel);
-                product.Id = Guid.NewGuid();
                 string fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 string extension = Path.GetExtension(file.FileName);
                 fileName = fileName + extension;
@@ -89,7 +88,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View();
         }
         // GET: Products/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             var categories = db.Categories.ToList();
             var suppliers = db.Suppliers.ToList();
@@ -153,7 +152,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Products/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
 
             if (id == null)
@@ -174,7 +173,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         // POST: Products/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(int id)
         {
             if (ModelState.IsValid)
             {

@@ -135,7 +135,7 @@ namespace WebApp.Controllers
             return PartialView(lstCategory);
         }
 
-        public ActionResult ProductDetail(Guid? id)
+        public ActionResult ProductDetail(int? id)
         {
             if (id == null)
             {
@@ -155,7 +155,7 @@ namespace WebApp.Controllers
         }
 
         //phân trang
-        public ActionResult PageProductDetail(int? page, Guid Id, double? price)
+        public ActionResult PageProductDetail(int? page, int Id, double? price)
         {
 
             var listProduct = db.Products.Where(p => p.Category.Id.Equals(Id)).ToList();
@@ -165,6 +165,7 @@ namespace WebApp.Controllers
             int pageNumber = (page ?? 1);
 
             ViewBag.ListCate = db.Categories.ToList();
+            ViewBag.CategoryId = Id;
 
             return View(lstProductViewModel.ToPagedList(pageNumber, pageSize));
         }
@@ -175,11 +176,11 @@ namespace WebApp.Controllers
         {
             //IEnumerable<Product> listProduct = null;
             ////ViewBag.ListManu = new List<ManufactureViewModel>(db.Manufacturers.Select(s => new ManufactureViewModel { Name = s.Name }));
-            //Guid categoryId = Guid.NewGuid();
+            //int categoryId = int.Newint();
 
             //if (formCollection.Count!= 0)
             //{
-            //    categoryId = Guid.Parse(formCollection["CategoryLstSearch"].ToString());
+            //    categoryId = int.Parse(formCollection["CategoryLstSearch"].ToString());
             //    Session["keysearch"] = categoryId;
             //    //nếu khách hàng chọn thể loại để tìm kiếm thì tìm kiếm theo từ khóa và thể loại
             //    listProduct = db.Products.Where(m => m.Name.Contains(keyword) && m.CategoryId == categoryId).ToList();

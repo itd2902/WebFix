@@ -121,5 +121,9 @@ namespace WebApp.Areas.Admin.Controllers
             ViewBag.KeyWord = keyword;
             return View("_SearchPartialView",lstProductViewModel.ToPagedList(pageNumber, pageSize));
         }
+        public ActionResult CustomPage()
+        {
+            return View();
+        }
     }
 }

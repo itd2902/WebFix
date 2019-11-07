@@ -7,7 +7,7 @@ namespace WebApp.Areas.Admin.Models.ViewDto
 {
     public class OrderDetailDto
     {
-        public Guid OrderId { get; set; }
+        public int OrderId { get; set; }
         public string Address { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

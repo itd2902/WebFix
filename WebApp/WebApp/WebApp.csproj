@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="Areas\Admin\Mapping\MappingProfile.cs" />
     <Compile Include="Areas\Admin\Models\ViewDto\CategoryDto.cs" />
+    <Compile Include="Models\ViewDto\CategoryDto.cs" />
     <Compile Include="Models\ViewDto\CreateUserDto.cs" />
     <Compile Include="Models\ViewDto\LoginDto.cs" />
     <Compile Include="Areas\Admin\Models\ViewDto\ManufactureDto.cs" />
@@ -185,6 +186,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\css\css.css" />
+    <Content Include="Areas\Admin\Assets\css\main.css" />
+    <Content Include="Areas\Admin\Assets\css\sidebar-themes.css" />
+    <Content Include="Areas\Admin\Assets\img\bg1.jpg" />
+    <Content Include="Areas\Admin\Assets\img\bg2.jpg" />
+    <Content Include="Areas\Admin\Assets\img\bg3.jpg" />
+    <Content Include="Areas\Admin\Assets\img\bg4.jpg" />
+    <Content Include="Areas\Admin\Assets\img\favicon.png" />
+    <Content Include="Areas\Admin\Assets\img\user.jpg" />
+    <Content Include="Areas\Admin\Assets\js\main.js" />
     <Content Include="Assets\css\ajax-loader.gif" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\css.css" />
@@ -325,7 +335,6 @@
     <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\SetRole\IndexAjax.cshtml" />
     <Content Include="Areas\Admin\Views\SetRole\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SetRole\EditRole.cshtml" />
     <Content Include="Areas\Admin\Views\Error\PageNotFounded.cshtml" />
@@ -348,6 +357,20 @@
     <Content Include="Areas\Admin\Views\Categories\SearchPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Error\SearchPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\ManagerOrder\ExportOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\ManagerOrder\GetOrderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Assets\sass\main.scss" />
+    <Content Include="Areas\Admin\Assets\sass\sidebar-themes.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_animation.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_mixin.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_sidebar-brand.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_sidebar-footer.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_sidebar-header.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_sidebar-menu.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_sidebar-search.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_sidebar-wrapper.scss" />
+    <Content Include="Areas\Admin\Assets\sass\_variables.scss" />
+    <Content Include="Areas\Admin\Views\Home\CustomPage.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\uetshop - Web Deploy.pubxml" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -407,7 +430,6 @@
   <ItemGroup>
     <Folder Include="AppFile\Images\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Assets\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

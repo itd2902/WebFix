@@ -10,10 +10,10 @@ namespace Domain.Entities
         public double BuyPrice { get; set; }
 
         [ForeignKey("Orders")]
-        public Guid? OrderId { get; set; }
+        public int OrderId { get; set; }
         public virtual Order Orders { get; set; }
         [ForeignKey("Product")]
-        public Guid? ProductId { get; set; }
+        public int? ProductId { get; set; }
         public virtual Product Product { get; set; }
     }
 }

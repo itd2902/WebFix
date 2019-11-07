@@ -7,7 +7,7 @@ namespace WebApp.Areas.Admin.Models.ViewModels
 {
     public class ManagerOrderViewModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public string FistName { get; set; }

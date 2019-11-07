@@ -3,7 +3,7 @@ namespace Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class adddatabase : DbMigration
+    public partial class createdatabase : DbMigration
     {
         public override void Up()
         {
@@ -11,13 +11,14 @@ namespace Domain.Migrations
                 "dbo.CATEGORY",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 250),
                         Description = c.String(maxLength: 2048),
+                        Image = c.String(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -27,7 +28,7 @@ namespace Domain.Migrations
                 "dbo.PRODUCT",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 256),
                         PublicationDate = c.DateTime(),
                         Price = c.Double(nullable: false),
@@ -39,13 +40,13 @@ namespace Domain.Migrations
                         ProductInStock = c.Int(nullable: false),
                         View = c.Int(),
                         QuantityBuy = c.Int(),
-                        CategoryId = c.Guid(),
-                        SupplierId = c.Guid(),
-                        ManufacturerId = c.Guid(),
+                        CategoryId = c.Int(),
+                        SupplierId = c.Int(),
+                        ManufacturerId = c.Int(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -61,15 +62,15 @@ namespace Domain.Migrations
                 "dbo.MANUFACTURER",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 250),
                         Description = c.String(),
                         Website = c.String(maxLength: 250),
                         LogoPath = c.String(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -82,11 +83,11 @@ namespace Domain.Migrations
                         Name = c.String(nullable: false, maxLength: 250),
                         Email = c.String(nullable: false, maxLength: 50),
                         Phone = c.String(nullable: false, maxLength: 20),
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -96,7 +97,7 @@ namespace Domain.Migrations
                 "dbo.CUSTOMER",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         FistName = c.String(),
                         LastName = c.String(),
                         Address = c.String(),
@@ -104,9 +105,9 @@ namespace Domain.Migrations
                         PhoneNumber = c.String(),
                         Email = c.String(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -116,20 +117,20 @@ namespace Domain.Migrations
                 "dbo.ORDERDETAIL",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         QuantityProduct = c.Int(nullable: false),
                         BuyPrice = c.Double(nullable: false),
-                        OrderId = c.Guid(),
-                        ProductId = c.Guid(),
+                        OrderId = c.Int(nullable: false),
+                        ProductId = c.Int(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ORDER", t => t.OrderId)
+                .ForeignKey("dbo.ORDER", t => t.OrderId, cascadeDelete: true)
                 .ForeignKey("dbo.PRODUCT", t => t.ProductId)
                 .Index(t => t.OrderId)
                 .Index(t => t.ProductId);
@@ -138,17 +139,17 @@ namespace Domain.Migrations
                 "dbo.ORDER",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         OrderDate = c.DateTime(),
                         ShippedDate = c.DateTime(),
                         StatusPayment = c.Int(nullable: false),
                         Cancelled = c.Int(nullable: false),
                         Deleted = c.Int(nullable: false),
-                        CustomerId = c.Guid(nullable: false),
+                        CustomerId = c.Int(nullable: false),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -160,13 +161,13 @@ namespace Domain.Migrations
                 "dbo.ROLE",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 50, unicode: false),
                         Description = c.String(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })
@@ -176,7 +177,7 @@ namespace Domain.Migrations
                 "dbo.USER",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         UserName = c.String(),
                         FirstName = c.String(maxLength: 250),
                         LastName = c.String(maxLength: 250),
@@ -185,11 +186,11 @@ namespace Domain.Migrations
                         Address = c.String(),
                         Age = c.Int(),
                         PhoneNumber = c.String(),
-                        RoleId = c.Guid(),
+                        RoleId = c.Int(),
                         CreatedDate = c.DateTime(),
-                        CreatedBy = c.Guid(),
+                        CreatedBy = c.String(),
                         UpdatedDate = c.DateTime(),
-                        UpdatedBy = c.Guid(),
+                        UpdatedBy = c.String(),
                         Status = c.Int(),
                         IsDeleted = c.Boolean(),
                     })

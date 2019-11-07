@@ -2,85 +2,92 @@
 @using PagedList.Mvc
 <h3>Danh sách đơn hàng</h3>
 <br />
-<table class="table table-bordered">
-    <tr style="font-size:20px;">
-        <td>
-            Họ
-        </td>
-        <td>
-            Tên
-        </td>
-        <td>
-            Ngày đặt
-        </td>
-        <td>
-            Số điện thoại
-        </td>
-        <td>
-            Địa chỉ
-        </td>
-        <td>
-            Xem chi tiết
-        </td>
-    </tr>
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">
+                Họ
+            </td>
+            <td scope="col">
+                Tên
+            </td>
+            <td scope="col">
+                Ngày đặt
+            </td>
+            <td scope="col">
+                Số điện thoại
+            </td>
+            <td scope="col">
+                Địa chỉ
+            </td>
+            <td scope="col">
+                Xem chi tiết
+            </td>
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @if (item.FistName == null || item.FistName == "")
-            {
-                @Url.Content("Đang cập nhật")
-            }
-            else
-            {
-                @item.FistName
-            }
-        </td>
-        <td>
-            @if (item.LastName == null || item.LastName == "")
-            {
-                @Url.Content("Đang cập nhật")
-            }
-            else
-            {
-                @item.LastName
-            }
-        </td>
-        <td>
-            @item.OrderDate
-        </td>
-        <td>
-            @if (item.PhoneNumber == null || item.PhoneNumber == "")
-            {
-                @Url.Content("Đang cập nhật")
-            }
-            else
-            {
-                @item.PhoneNumber
-            }
-        </td>
-        <td>
-            @if (item.Address == null || item.Address == "")
-            {
-                @Url.Content("Đang cập nhật")
-            }
-            else
-            {
-                @item.Address
-            }
-        </td>
-        <td>
-            <i class="glyphicon glyphicon-eye-open viewOrder" id="@item.Id" style="cursor:pointer;"></i>
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @if (item.FistName == null || item.FistName == "")
+                {
+                    @Url.Content("Đang cập nhật")
+                }
+                else
+                {
+                    @item.FistName
+                }
+            </td>
+            <td>
+                @if (item.LastName == null || item.LastName == "")
+                {
+                    @Url.Content("Đang cập nhật")
+                }
+                else
+                {
+                    @item.LastName
+                }
+            </td>
+            <td>
+                @item.OrderDate
+            </td>
+            <td>
+                @if (item.PhoneNumber == null || item.PhoneNumber == "")
+                {
+                    @Url.Content("Đang cập nhật")
+                }
+                else
+                {
+                    @item.PhoneNumber
+                }
+            </td>
+            <td>
+                @if (item.Address == null || item.Address == "")
+                {
+                    @Url.Content("Đang cập nhật")
+                }
+                else
+                {
+                    @item.Address
+                }
+            </td>
+            <td>
+                @*<i class="glyphicon glyphicon-eye-open viewOrder" id="@item.Id" style="cursor:pointer;"></i>*@
+                @Html.ActionLink("Chi tiết", "GetOrderDetail", new { @id=item.Id},new { @class="btn btn-primary"})
+            </td>
+        </tr>
     }
 </table>
 <br />
 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-@Html.PagedListPager(Model,page=>Url.Action("GetPagsing",new { page }),
-    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() {
-        HttpMethod="GET",UpdateTargetId= "managerOrder"}))
-<script>
+@Html.PagedListPager(Model, page => Url.Action("GetPagsing", new { page }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        UpdateTargetId = "managerOrder"
+    }))
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
     $(function () {
         $(".viewOrder").off().on("click", function () {
             var id = $(this).attr("id");
@@ -94,4 +101,4 @@ Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCo
             });
         });
     });
-</script>    
+</script>*@    
