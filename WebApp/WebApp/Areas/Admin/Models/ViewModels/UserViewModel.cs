@@ -13,8 +13,14 @@ namespace WebApp.Areas.Admin.Models.ViewModels
         public int Id { get; set; }
         [DisplayName("Nhân viên")]
         public string UserName { get; set; }
+        [DisplayName("Họ")]
+        public string FirstName { get; set; }
+        [DisplayName("Tên")]
+        public string LastName { get; set; }
         [DisplayName("Ngày tham gia")]
         public DateTime CreatedDate { get; set; }
+        [DisplayName("Giới tính")]
+        public string Gender { get; set; }
         [DisplayName("Email")]
         public string Email { get; set; }
         [DisplayName("Địa chỉ")]

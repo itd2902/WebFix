@@ -37,13 +37,13 @@
             <div class="col-md-12">
                 <div class="section-title">
                     <h3 class="title">SẢN PHẨM MỚI</h3>
-                    <div class="section-nav">
-                            <ul class="section-tab-nav tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab2">Gamming</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Doanh nhân</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Đồ họa</a></li>
-                            </ul>
-                        </div>
+                    @*<div class="section-nav">
+                        <ul class="section-tab-nav tab-nav">
+                            <li class="active"><a data-toggle="tab" href="#tab2">Gamming</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Doanh nhân</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Đồ họa</a></li>
+                        </ul>
+                    </div>*@
                 </div>
             </div>
             <!-- /section title -->
@@ -84,8 +84,8 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             @*<div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
-                                                </div>*@
+                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                        </div>*@
                                         </div>
                                         <div class="add-to-cart">
                                             <button class="add-to-cart-btn addCart">
@@ -94,9 +94,9 @@
                                             </button>
                                         </div>
                                         @*<span>
-                                                 @Ajax.ActionLink("Thêm vào giỏ hàng ajax","ThemGioHangAjax","GioHang",new { @productId =item.Id},
-                                            new AjaxOptions { HttpMethod="GET",UpdateTargetId= "divGioHang",InsertionMode=InsertionMode.Replace },null)
-                                             </span>*@
+                                         @Ajax.ActionLink("Thêm vào giỏ hàng ajax","ThemGioHangAjax","GioHang",new { @productId =item.Id},
+                                    new AjaxOptions { HttpMethod="GET",UpdateTargetId= "divGioHang",InsertionMode=InsertionMode.Replace },null)
+                                     </span>*@
                                     </div>
                                 }
                                 <!-- /product -->
@@ -116,7 +116,7 @@
                         <div id="tab1" class="tab-pane fade in active">
                             <div class="products-slick" data-nav="#slick-nav-1">
                                 <!-- product -->
-                                @foreach (var item in  (List<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>)ViewBag.ProductList)
+                                @foreach (var item in (List<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>)ViewBag.ProductList)
                                 {
                                     <div class="product">
 
@@ -136,9 +136,9 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div class="product-btns">
-                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
+                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>
 
-                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="add-to-cart">
                                                 <button class="add-to-cart-btn addCart">
@@ -149,7 +149,7 @@
                                         </div>
 
                                     </div>
-                                     //product 
+                                    //product
                                 }
                             </div>
                             <div id="slick-nav-1" class="products-slick-nav"></div>

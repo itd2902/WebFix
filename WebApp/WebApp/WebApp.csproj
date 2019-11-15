@@ -158,10 +158,12 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\ViewDto\OrderDetailDto.cs" />
     <Compile Include="Areas\Admin\Models\ViewDto\UserDto.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ManagerOrderViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManufactureController.cs" />
@@ -358,7 +360,6 @@
     <Content Include="Areas\Admin\Views\Error\SearchPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\ManagerOrder\ExportOrder.cshtml" />
     <Content Include="Areas\Admin\Views\ManagerOrder\GetOrderDetail.cshtml" />
-    <Content Include="Areas\Admin\Views\_Layout.cshtml" />
     <Content Include="Areas\Admin\Assets\sass\main.scss" />
     <Content Include="Areas\Admin\Assets\sass\sidebar-themes.scss" />
     <Content Include="Areas\Admin\Assets\sass\_animation.scss" />
@@ -426,6 +427,8 @@
     <Content Include="Views\GioHang\SuaGioHang.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Account\GetUser.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppFile\Images\" />

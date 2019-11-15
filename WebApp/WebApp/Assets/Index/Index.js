@@ -13,7 +13,7 @@ $(function () {
                     title: "Thành công!",
                     text: "Đã thêm vào giỏ hàng!",
                     icon: "success",
-                    button: "OK",
+                    button: "OK"
                 });
             },
             complete: function () {
@@ -90,7 +90,7 @@ $(function () {
         dinhdangUser = /^[A-z_](\w|\.|_){2,32}$/;
         KTUser = dinhdangUser.test($("#UserName").val());
         if (!KTUser) {
-            $("#TB_UserName").text("Tên sai định dạng");
+            $("#TB_UserName").text("Tên đăng nhập không hợp lệ");
             bug++;
         }
         if ($("#FirstName").val() === '') {
@@ -133,7 +133,7 @@ $(function () {
         dinhdang = /^[a-z][a-z0-9_\.]{1,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
         KTemail = dinhdang.test($('#Email').val());
         if (!KTemail) {
-            $('#TB_Email').text("Email không hợp lệ")
+            $('#TB_Email').text("Email không hợp lệ");
             bug++;
         }
         else {
@@ -143,7 +143,7 @@ $(function () {
         phoneNumber = /(09|01[2|6|8|9])+([0-9]{8})\b/;
         KTPhoneNumber = phoneNumber.test($('#PhoneNumber').val());
         if (!KTPhoneNumber) {
-            $('#TB_PhoneNumber').text("Số điện thoại không hợp lệ")
+            $('#TB_PhoneNumber').text("Số điện thoại không hợp lệ");
             bug++;
         }
         else {

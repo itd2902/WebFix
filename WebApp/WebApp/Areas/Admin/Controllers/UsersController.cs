@@ -3,8 +3,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using AutoMapper;
 using Domain;
 using Domain.Entities;
+using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
@@ -44,16 +46,17 @@ namespace WebApp.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserName,Password,Email,Address,Age,PhoneNumber,RoleId,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy,Status,IsDeleted")] User user)
+        public ActionResult Create(UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
             {
+                var user = Mapper.Map<UserViewModel, User>(userViewModel);
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(userViewModel);
         }
 
         // GET: Admin/Users/Edit/5

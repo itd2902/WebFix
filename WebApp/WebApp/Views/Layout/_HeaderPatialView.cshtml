@@ -14,7 +14,7 @@
                     User user = (User)Session["username"];
                     if (user.UserName.Equals("admin"))
                     {
-                        <li><a href="/Product/Index">Trang Quản Trị</a></li>
+                        <li><a href="~/Admin/Product/Index"><i class="fa fa-user-o"></i>Trang Quản Trị</a></li>
                     }
                 }
             }
@@ -25,13 +25,12 @@
                 if (Session["username"] != null && Session["username"].ToString() != "")
                 {
                     User user = (User)Session["username"];
-                    <li><a href="/Home/Login"> Xin chào @user.UserName !</a></li>
-                    <li><a href="/Home/Logout"><i class="fa fa-user-o"></i>Đăng xuất</a></li>
+                    <li><a href="/Account/GetUser"> Xin chào @user.UserName !</a></li>
+                    <li><a href="/Home/Logout"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
                 }
                 else
                 {
                     <li><a href="/Home/Login"><i class="fa fa-user-o"></i>Đăng nhập</a></li>
-
                 }
             }
             @*<li><a href="/Home/Login"><i class="fa fa-user-o"></i>Đăng nhập</a></li>*@

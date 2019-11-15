@@ -1,0 +1,146 @@
+﻿@using WebApp.Areas.Admin.Models.ViewModels
+@model UserViewModel
+@{
+    ViewBag.Title = "GetUser";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+<div class="container submenu">
+    <div class="row">
+        <div class="col-sm-4 col-md-3 sidebar">
+            <div class="mini-submenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
+            <div class="list-group">
+                <span href="#" class="list-group-item">
+                    <p>Tài khoản của</p>
+                        <strong>
+                            @Model.UserName
+                        </strong>
+                    @*<span class="pull-right" id="slide-submenu">
+                        <i class="fa fa-times"></i>
+                    </span>*@
+                </span>
+                <a href="@Url.Action("GetUser","Account")" class="list-group-item">
+                    <i class="fa fa-user"></i> <span>Thông tin tài khoản</span>
+                </a>
+                <a href="@Url.Action("ChangePassword","Account")" class="list-group-item">
+                    <i class="fa fa-user"></i> <span>Thay đổi mật khẩu</span>
+                </a>
+                <a href="@Url.Action("Logout","Home")" class="list-group-item">
+                    <i class="fa fa-sign-out"></i> <span>Đăng xuất</span>
+                </a>
+                @*<a href="#" class="list-group-item">
+                    <i class="fa fa-comment-o"></i> Lorem ipsum
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-search"></i> Lorem ipsum
+                </a>
+
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-folder-open-o"></i> Lorem ipsum <span class="badge">14</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-bar-chart-o"></i> Lorem ipsumr <span class="badge">14</span>
+                </a>
+                <a href="#" class="list-group-item">
+                    <i class="fa fa-envelope"></i> Lorem ipsum
+                </a>*@
+            </div>
+        </div>
+
+        <div class="col-sm-8 col-md-9 sidebar">
+            @if (!string.IsNullOrEmpty(ViewBag.Notify))
+            {
+                <div class="alert alert-success">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Cập nhật thông tin thành công
+                </div>
+            }
+            <h1 class="have-margin">
+                Thông tin tài khoản
+            </h1>
+            <div class="user-info">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <input id="Id" name="Id" value="@Model.Id" type="hidden" placeholder="Nhập tên họ" class="form-control input-md">
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Họ</label>
+                            <div class="col-md-6">
+                                <input id="FirstName" name="FirstName" value="@Model.FirstName" type="text" placeholder="Nhập tên họ" class="form-control input-md">
+                                @*@Html.EditorFor(x => x.FirstName, null, new { @class="form-control input-md",@id="textinput"})*@
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Tên</label>
+                            <div class="col-md-6">
+                                <input id="LastName" name="LastName" value="@Model.LastName" type="text" placeholder="Nhập tên" class="form-control input-md">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Email</label>
+                            <div class="col-md-6">
+                                <input id="Email" name="Email" value="@Model.Email" type="text" placeholder="Nhập email" class="form-control input-md">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Số điện thoại</label>
+                            <div class="col-md-6">
+                                <input id="Address" name="Address" value="@Model.PhoneNumber" type="text" placeholder="Nhập số điện thoại" class="form-control input-md">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput">Địa chỉ</label>
+                            <div class="col-md-6">
+                                <textarea id="textinput" name="PhoneNumber" value="@Model.Address" type="text" placeholder="Nhập địa chỉ" class="form-control input-md"></textarea>
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <!-- Multiple Radios -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="radios">Giới tính</label>
+                            <div class="col-md-6">
+                                <div class="radio">
+                                    <label for="radios-0">
+                                        <input type="radio" name="Gender" id="radios-0" value="male" checked="@Model.Gender.Equals("male")">
+                                        Nam
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="radios-1">
+                                        <input type="radio" name="Gender" id="radios-1" value="female" checked="@Model.Gender.Equals("female")">
+                                        Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="textinput"></label>
+                            <div class="col-md-6">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-danger">Cập nhật</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+

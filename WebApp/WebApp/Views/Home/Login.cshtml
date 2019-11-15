@@ -19,13 +19,18 @@
 
             <div class="login-form" style="display:block;">
                 <div class="sign-in-htm">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Login","Home",FormMethod.Post))
                     {
 
                         <div class="login-page">
                             <h3>Đăng nhập</h3>
+
                             <div class="form">
                                 <form class="login-form">
+                                    @if (ViewBag.Error != null)
+                                    {
+                                        <span style="color:red">@ViewBag.Error</span>
+                                    }
                                     <div class="group">
                                         @Html.LabelFor(model => model.UserName)
                                         @Html.EditorFor(m => m.UserName)
@@ -59,10 +64,8 @@
             else {
                 $("#TB_username").text("");
             }
-            $("#UserName").keypress(function (e) {
-                if (e.which === 13 || e.which === 40) {
+            $("#UserName").change(function (e)  {
                     $("#Password").focus();
-                }
             });
             if ($("#Password").val() == '') {
                 $("#TB_password").text("Mật khẩu không được để trống");
@@ -77,6 +80,13 @@
                 return false;
             }
 
+        });
+        $("#UserName").change(function () {
+            console.log($("#Password").val());
+            if ($("#Password").val() == null || $("#Password").val() == "") {
+                $("#Password").focus();
+                return false;
+            }
         });
     </script>
 </body>

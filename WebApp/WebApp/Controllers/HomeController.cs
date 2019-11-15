@@ -72,7 +72,9 @@ namespace WebApp.Controllers
                         user.Address = loginDto.Address;
                         db.Users.Add(user);
                         db.SaveChanges();
-                        return RedirectToAction("Login", "Home");
+                        Session["username"] = user;
+                        Session["GioHang"] = null;
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -98,15 +100,11 @@ namespace WebApp.Controllers
             if (user != null)
             {
                 Session["username"] = user;
-                if (sTaikhoan == "admin" && sMatkhau.Equals(user.Password))
-                {
-                    return RedirectToAction("Index", "Product");
-                }
                 Session["GioHang"] = null;
                 return RedirectToAction("Index", "Home");
             }
-
-            return RedirectToAction("Login");
+            ViewBag.Error = "Thông tin tài khoản hoặc mật khẩu không chính xác !";
+            return View(loginDto);
         }
 
         public ActionResult Logout()

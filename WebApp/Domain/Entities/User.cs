@@ -19,6 +19,7 @@ namespace Domain.Entities
         public string Address { get; set; }
         public int? Age { get; set; }
         public string PhoneNumber { get; set; }
+        public bool? Gender { get; set; }
 
         #endregion
 

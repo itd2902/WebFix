@@ -1,4 +1,4 @@
-﻿    @model WebApp.Models.ViewDto.CreateUserDto
+﻿@model WebApp.Models.ViewDto.CreateUserDto
 @{
     Layout = null;
 }
@@ -16,10 +16,10 @@
 <body>
     <div class="login-wrap">
         <div class="login-html">
+             
+            <div class="login-form" >
 
-            <div class="login-form">
-
-                <div class="sign-in-htm">
+                <div class="sign-in-htm2">
 
                     @using (Html.BeginForm())
                     {
@@ -28,58 +28,40 @@
                             <form class="login-form">
                                 <h3>Đăng kí</h3>
                                 <div class="container">
-                                    <div class="row">
-                                        @if (ViewBag.Notify != null)
-                                        {
-                                            <p style="color:red;">@ViewBag.Notify</p>
-                                        }
-                                        <div class="col-md-6">
-
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.UserName)
-                                                @Html.EditorFor(m => m.UserName)
-                                                <p id="TB_UserName" style="color:red;"></p>
-                                            </div>
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.FirstName)
-                                                @Html.EditorFor(m => m.FirstName)
-                                                <p id="TB_FirstName" style="color:red;"></p>
-                                            </div>
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.LastName)
-                                                @Html.EditorFor(m => m.LastName)
-                                                <p id="TB_LastName" style="color:red;"></p>
-                                            </div>
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.Email)
-                                                @Html.EditorFor(m => m.Email)
-                                                <p id="TB_Email" style="color:red;"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.PhoneNumber)
-                                                @Html.EditorFor(m => m.PhoneNumber)
-                                                <p id="TB_PhoneNumber" style="color:red;"></p>
-                                            </div>
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.Address)
-                                                @Html.EditorFor(m => m.Address)
-                                                <p id="TB_Address" style="color:red;"></p>
-                                            </div>
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.Password)
-                                                @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
-                                                <p id="TB_Password" style="color:red;"></p>
-                                            </div>
-
-                                            <div class="group">
-                                                @Html.LabelFor(model => model.ConfirmPassword)
-                                                @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @type = "password" } })
-                                                <p id="TB_ConfirmPassword" style="color:red;"></p>
-                                            </div>
-                                        </div>
+                                    @if (ViewBag.Notify != null)
+                                    {
+                                        <p style="color:red;">@ViewBag.Notify</p>
+                                    }
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.UserName)
+                                        @Html.EditorFor(m => m.UserName)
+                                        <p id="TB_UserName" style="color:red;"></p>
                                     </div>
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.Email)
+                                        @Html.EditorFor(m => m.Email)
+                                        <p id="TB_Email" style="color:red;"></p>
+                                    </div>
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.PhoneNumber)
+                                        @Html.EditorFor(m => m.PhoneNumber)
+                                        <p id="TB_PhoneNumber" style="color:red;"></p>
+                                    </div>
+
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.Password)
+                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @type = "password" } })
+                                        <p id="TB_Password" style="color:red;"></p>
+                                    </div>
+
+
+                                    <div class="group">
+                                        @Html.LabelFor(model => model.ConfirmPassword)
+                                        @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @type = "password" } })
+                                        <p id="TB_ConfirmPassword" style="color:red;"></p>
+                                    </div>
+
+
                                 </div>
 
                                 <input type="submit" class="btn btn-success" value="Đăng kí" id="btnCreateAccount" />

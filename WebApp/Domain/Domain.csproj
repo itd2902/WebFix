@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201910270835396_createdatabase.Designer.cs">
       <DependentUpon>201910270835396_createdatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911131700091_add_filed_gender.cs" />
+    <Compile Include="Migrations\201911131700091_add_filed_gender.Designer.cs">
+      <DependentUpon>201911131700091_add_filed_gender.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910270835396_createdatabase.resx">
       <DependentUpon>201910270835396_createdatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911131700091_add_filed_gender.resx">
+      <DependentUpon>201911131700091_add_filed_gender.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

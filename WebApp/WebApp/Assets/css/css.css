@@ -1,5 +1,37 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.mini-submenu {
+    display: none;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.9);
+    padding: 9px;
+    /*position: relative;*/
+    width: 42px;
+}
+
+    .mini-submenu:hover {
+        cursor: pointer;
+    }
+
+    .mini-submenu .icon-bar {
+        display: block;
+        height: 2px;
+        width: 22px;
+        margin-top: 3px;
+    }
+
+    .mini-submenu .icon-bar {
+        background-color: #000;
+    }
+
+
+#slide-submenu {
+    background: rgba(0, 0, 0, 0.45);
+    display: inline-block;
+    padding: 0 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
 .login-page {
     width: 360px;
     padding: 8% 0 0;
@@ -22,12 +54,20 @@
 }
 .sign-in-htm h3 {
     position: absolute;
-    top: -14%;
+    top: 14%;
     font-size: 28px;
     font-weight: 700;
-    left: 45%;
+    left: 47%;
     color: #c15307;
 }
+    .sign-in-htm2 h3 {
+        position: absolute ;
+        top: -10% ;
+        font-size: 28px ;
+        font-weight: 700 ;
+        left: 44% ;
+        color: #c15307 ;
+    }
 .message a {
     font-size: 15px;
 }
@@ -42,13 +82,16 @@ input#btnDangNhap {
 .sign-in-htm .form {
     margin-top: 11%;
 }
+.sign-in-htm2 .form {
+    text-align:center;
+    margin-top: 5%;
+}
 input#btnCreateAccount {
     background: #c3632d;
     width: 17em;
 }
 
 .form input {
-    font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
     width: 100%;
@@ -57,6 +100,9 @@ input#btnCreateAccount {
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    border: none;
 }
 
 .form button {
