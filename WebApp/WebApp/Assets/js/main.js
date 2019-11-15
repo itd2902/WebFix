@@ -82,9 +82,9 @@
 
 	// Product img zoom
 	var zoomMainProduct = document.getElementById('product-main-img');
-	if (zoomMainProduct) {
-		$('#product-main-img .product-preview').zoom();
-	}
+	//if (zoomMainProduct) {
+	//	$('#product-main-img .product-preview').zoom();
+	//}
 
 	/////////////////////////////////////////
 

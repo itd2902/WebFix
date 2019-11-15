@@ -101,10 +101,10 @@
                             <div class="product">
                                 <div class="product-img" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
                                     <img src="@item.UrlImage" alt="">
-                                     <div class="product-label">
+                                     @*<div class="product-label">
                                         <span class="sale">-30%</span>
                                         <span class="new">NEW</span>
-                                    </div> 
+                                    </div>*@ 
                                 </div>
                                 <div class="product-body" onclick="location.href='@Url.Action("ProductDetail", "Home", new { id = item.Id })'">
                                     <p class="product-category">@item.CategoryName</p>
@@ -131,26 +131,28 @@
                         </div>
                     }
                 </div>
-                <div class="store-filter clearfix" style="position:fixed">
-                    <span class="store-qty">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</span>
-                    @{
-                        var currentPage = Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber;
-                    }
-                    <ul class="store-pagination">
-                        <li><a href="@Url.Action("PageProductDetail", new { page = ((currentPage - 1) <=0) ? currentPage = Model.PageSize+1 : currentPage -= 1 })"><i class="fa fa-angle-left"></i></a></li>
-                        @for (int vip = 1; vip <= Model.PageCount; vip++)
-                        {
-                            if (vip == (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber))
-                            {
-                                <li class="active"><a href="@Url.Action("PageProductDetail", new { page = vip, Id = ViewBag.CategoryId })">@vip</a></li>
-                            }
-                            else
-                            {
-                                <li><a href="@Url.Action("PageProductDetail", new { page = vip, Id = ViewBag.CategoryId })">@vip</a></li>
-                            }
+                <div class="row">
+                    <div class="store-filter clearfix">
+                        <span class="store-qty">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</span>
+                        @{
+                            var currentPage = Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber;
                         }
-                        <li><a href="@Url.Action("PageProductDetail", new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)+1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
+                        <ul class="store-pagination">
+                            <li><a href="@Url.Action("PageProductDetail", new { page = ((currentPage - 1) <=0) ? currentPage = Model.PageSize+1 : currentPage -= 1 })"><i class="fa fa-angle-left"></i></a></li>
+                            @for (int vip = 1; vip <= Model.PageCount; vip++)
+                            {
+                                if (vip == (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber))
+                                {
+                                    <li class="active"><a href="@Url.Action("PageProductDetail", new { page = vip, Id = ViewBag.CategoryId })">@vip</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("PageProductDetail", new { page = vip, Id = ViewBag.CategoryId })">@vip</a></li>
+                                }
+                            }
+                            <li><a href="@Url.Action("PageProductDetail", new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)+1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

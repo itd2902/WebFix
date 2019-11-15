@@ -27,9 +27,14 @@ body a {
     outline: none;
     color: #fff;
     background: none;
-    font-size: 20px;
+    font-size: 25px;
     border: none;
     width: 80%;
+    margin-top: 15px;
+    color:white;
+}
+::placeholder {
+    color: white;
 }
 
 .danhmuc ul li a:hover {
@@ -553,10 +558,11 @@ i.faq {
 
 .search {
     width: 65%;
-    background: #418bca;
+    background: #2e9df7;
     padding: 1.7em 1.5em 0 1.5em;
     float: left;
     margin-right: 1%;
+    min-height: 110px;
 }
 
 .member {
@@ -927,7 +933,7 @@ p.home {
     }
 
 .list_of_members {
-    margin: 0 2em 0 0;
+    margin: 2em 0;
 }
 
 .visitors {
@@ -968,38 +974,50 @@ i.dollar {
 }
 
 .sales {
-    width: 20%;
+    width: 23.5%;
     background: #16a085;
     padding: 1.8em 0.5em;
     float: left;
     cursor: pointer;
+    margin-right: 2%;
 }
 
 .orders {
-    width: 20%;
+    width: 23.5%;
     background: #418bca;
     padding: 1.8em 1.5em;
     float: left;
     cursor: pointer;
+    margin-right: 2%;
 }
 
 .new-users {
-    width: 20%;
+    width: 23.5%;
     background: #e05d6f;
     padding: 1.8em 01.5em;
     float: left;
     cursor: pointer;
+    margin-right: 2%;
 }
 
 .icon {
     float: left;
     margin-right: 5%;
 }
-
+.list_of_members h3 {
+    color: white;
+}
 .icon-text {
     float: left;
 }
-
+.visitors {
+    width: 23.5%;
+    margin-right: 0%;
+    background: #3f4e62;
+    padding: 1.8em 2em;
+    float: left;
+    cursor: pointer;
+}
 .visitors h4, .sales h4, .new-users h4, .orders h4 {
     color: #fff;
     text-align: center;
@@ -1635,16 +1653,10 @@ button#focus-single, button#focus-multiple, button#focus-coords, button#focus-in
 button.btn.btn-primary.addProduct {
     margin: 1%;
 }
-.home-strip .member {
-    border-radius: 60px;
-}
     button.btn.btn-primary.addProduct a {
         color: white;
         text-decoration:none;
     }
-.home-strip .search {
-    border-radius: 60px !important;
-}
 .user-trends {
     width: 100%;
     position: relative;
@@ -1851,7 +1863,11 @@ button.btn.btn-primary.addProduct {
     }
 
         p.home a {
-            margin-top: -1.4px;
+            text-decoration: none;
+            margin-top: -1px;
+            display: block;
+            width: 5.5%;
+            float: left;
         }
 
     div#vmap {
@@ -1921,8 +1937,14 @@ button.btn.btn-primary.addProduct {
     }
 
     .search2 input[type="text"] {
+        outline: none;
+        color: #fff;
+        background: none;
         font-size: 1.8em;
-        width: 76%;
+        border: none;
+        width: 80%;
+        height: 45px;
+        font-weight: 300;
     }
 
     i.refresh {
@@ -2485,12 +2507,20 @@ button.btn.btn-primary.addProduct {
     }
 
     .search2 {
-        padding: 0;
+        position: relative;
+        background: none;
+        padding: 7px;
+        width: 100%;
+        float: right;
     }
 
         .search2 input[type="text"] {
-            font-size: 1.85em;
-            width: 74%;
+            outline: none;
+            color: #fff;
+            background: none;
+            font-size: 20px;
+            border: none;
+            width: 80%;
         }
 
     p.home a {

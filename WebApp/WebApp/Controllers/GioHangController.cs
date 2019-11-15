@@ -239,6 +239,7 @@ namespace WebApp.Controllers
             }
             db.SaveChanges();
             Session["GioHang"] = null;
+            TempData["Notify"] = "Đặt hàng thành công";
             return RedirectToAction("XemGioHang");
         }
 

@@ -20,32 +20,34 @@
                 <a href="~/Admin/Home/Index"><img src="~/Assets/img/logo1.png" alt="" /></a>
             </div>
             <div class="navigation">
-                <h3><a href="@Url.RouteUrl("Admin_TrangChu")" style="text-decoration:none;color:#fff;">Trang chủ</a></h3>
+                <h3><a href="@Url.RouteUrl("Admin_TrangChu")" style="text-decoration:none;color:#fff;">Trang quản trị</a></h3>
                 <ul>
-                    <li><a href="/Admin/Product/Index"><i class="chat"></i></a></li>
-                    <li><a href="/Admin/Product/Index">Quản lý sản phẩm</a></li>
+                    <li><a href="/Admin/Product/Index"><i class="fa fa-shopping-bag"></i> Quản lý sản phẩm</a></li>
                 </ul>
 
                 <ul>
-                    <li><a href="/Admin/SetRole/Index"><i class="user"></i></a></li>
-                    <li><a href="/Admin/SetRole/Index">Quản lý tài khoản</a></li>
+                    <li><a href="/Admin/SetRole/Index"><i class="fa fa-users"></i> Quản lý tài khoản</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/Admin/ManagerOrder/Index"><i class="art"></i></a></li>
-                    <li><a href="/Admin/ManagerOrder/Index">Quản lý đơn hàng</a></li>
+                    <li><a href="/Admin/ManagerOrder/Index"><i class="fa fa-file-text"></i> Quản lý đơn hàng</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/Admin/Categories/Index"><i class="art"></i></a></li>
-                    <li><a href="/Admin/Categories/Index">Quản lý thể loại</a></li>
+                    <li><a href="/Admin/Categories/Index"><i class="fa fa-ship"></i> Quản lý thể loại</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/Admin/Supplier/Index"><i class="fa fa-folder"></i> Quản lý cung cấp</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/Admin/Manufacture/Index"><i class="fa fa-folder"></i> Quản lý sản xuất</a></li>
                 </ul>
                 @*<ul>
-                        <li><a href="#"><i class="setting"></i></a></li>
-                        <li><a href="#">Settings</a></li>
-                    </ul>*@
+            <li><a href="#"><i class="setting"></i></a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>*@
             </div>
         </div>
         <div class="col-lg-9 content">
-            @*<div class="home-strip">
+            <div class="home-strip">
                     @Html.Partial("SearchPartialView")
                     <div class="member">
                         <p><a href="#"><i class="men"></i></a><a href="#">@Session["UserName"]</a></p>
@@ -90,7 +92,6 @@
                 <div class="clearfix">
 
                 </div>
-            *@
             @{
                 Html.RenderAction("Index", "Statistic");
             }

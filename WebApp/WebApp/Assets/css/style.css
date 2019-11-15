@@ -1730,7 +1730,7 @@ div#slick-nav-1 {
 
         #product-tab .tab-nav li {
             display: inline-block;
-            background: #FFF;
+            background: #f4f4f4;
             padding: 0px 15px;
         }
 
@@ -1741,7 +1741,7 @@ div#slick-nav-1 {
             #product-tab .tab-nav li a {
                 display: block;
                 font-weight: 700;
-                color: #8D99AE;
+                color: black;
             }
 
             #product-tab .tab-nav li.active a {
