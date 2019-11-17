@@ -1,4 +1,7 @@
 ﻿
+@{ 
+    var user = Session["UserName"];
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,34 +15,45 @@
     <link href="~/Content/PagedList.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+
 </head>
 <body>
     <div class="container">
         <div class="col-lg-3 side-bar">
             <div class="logo text-center">
-                <a href="~/Admin/Home/Index"><img src="~/Assets/img/logo1.png" alt="" /></a>
+                <a href="@Url.Action("GetProductPagsing","Product")"><img src="~/Assets/img/logo1.png" alt="" /></a>
             </div>
             <div class="navigation">
-                <h3><a href="@Url.RouteUrl("Admin_TrangChu")" style="text-decoration:none;color:#fff;">Trang quản trị</a></h3>
+                @*<h3><a href="@Url.RouteUrl("Admin_TrangChu")" style="text-decoration:none;color:#fff;">Trang quản trị</a></h3>*@
+                <h3>Trang quản trị</h3>
                 <ul>
-                    <li><a href="/Admin/Product/Index"><i class="fa fa-shopping-bag"></i> Quản lý sản phẩm</a></li>
+                    <li><a href="/Admin/Product/GetProductPagsing"><i class="fa fa-shopping-bag"></i> Quản lý sản phẩm</a></li>
                 </ul>
 
+
                 <ul>
-                    <li><a href="/Admin/SetRole/Index"><i class="fa fa-users"></i> Quản lý tài khoản</a></li>
+                    <li><a href="/Admin/ManagerOrder/GetPagsing"><i class="fa fa-file-text"></i> Quản lý đơn hàng</a></li>
                 </ul>
-                <ul>
-                    <li><a href="/Admin/ManagerOrder/Index"><i class="fa fa-file-text"></i> Quản lý đơn hàng</a></li>
-                </ul>
-                <ul>
-                    <li><a href="/Admin/Categories/Index"><i class="fa fa-ship"></i> Quản lý thể loại</a></li>
-                </ul>
-                <ul>
-                    <li><a href="/Admin/Supplier/Index"><i class="fa fa-folder"></i> Quản lý cung cấp</a></li>
-                </ul>
-                <ul>
-                    <li><a href="/Admin/Manufacture/Index"><i class="fa fa-folder"></i> Quản lý sản xuất</a></li>
-                </ul>
+                @{
+                    if (user != null)
+                    {
+                        if (user.Equals("admin"))
+                        {
+                            <ul>
+                                <li><a href="/Admin/SetRole/Index"><i class="fa fa-users"></i> Quản lý tài khoản</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="/Admin/Categories/Index"><i class="fa fa-ship"></i> Quản lý thể loại</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="/Admin/Supplier/Index"><i class="fa fa-folder"></i> Quản lý cung cấp</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="/Admin/Manufacture/Index"><i class="fa fa-folder"></i> Quản lý sản xuất</a></li>
+                            </ul>
+                        }
+                    }
+                }
                 @*<ul>
             <li><a href="#"><i class="setting"></i></a></li>
             <li><a href="#">Settings</a></li>
@@ -48,50 +62,50 @@
         </div>
         <div class="col-lg-9 content">
             <div class="home-strip">
-                    @Html.Partial("SearchPartialView")
-                    <div class="member">
-                        <p><a href="#"><i class="men"></i></a><a href="#">@Session["UserName"]</a></p>
-                        <div id="dd" class="wrapper-dropdown-2" tabindex="1">
-                            <span><img src="~/Content/AdminLayout/images/settings.png" /></span>
-                            <ul class="dropdown">
-                                <li><a href="/Admin/Home/Logout">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                        <!-----end-wrapper-dropdown-2---->
-                        <!-----start-script---->
-                        <script type="text/javascript">
-                            function DropDown(el) {
-                                this.dd = el;
-                                this.initEvents();
-                            }
-                            DropDown.prototype = {
-                                initEvents: function () {
-                                    var obj = this;
-
-                                    obj.dd.on('click', function (event) {
-                                        $(this).toggleClass('active');
-                                        event.stopPropagation();
-                                    });
-                                }
-                            }
-                            $(function () {
-
-                                var dd = new DropDown($('#dd'));
-
-                                $(document).click(function () {
-                                    // all dropdowns
-                                    $('.wrapper-dropdown-2').removeClass('active');
-                                });
-
-                            });
-                        </script>
-                        <div class="clearfix"></div>
+                @Html.Partial("SearchPartialView")
+                <div class="member">
+                    <p><a href="#"><i class="men"></i></a><a href="#">@Session["UserName"]</a></p>
+                    <div id="dd" class="wrapper-dropdown-2" tabindex="1">
+                        <span><img src="~/Content/AdminLayout/images/settings.png" /></span>
+                        <ul class="dropdown">
+                            <li><a href="/Admin/Home/Logout">Đăng xuất</a></li>
+                        </ul>
                     </div>
+                    <!-----end-wrapper-dropdown-2---->
+                    <!-----start-script---->
+                    <script type="text/javascript">
+                        function DropDown(el) {
+                            this.dd = el;
+                            this.initEvents();
+                        }
+                        DropDown.prototype = {
+                            initEvents: function () {
+                                var obj = this;
+
+                                obj.dd.on('click', function (event) {
+                                    $(this).toggleClass('active');
+                                    event.stopPropagation();
+                                });
+                            }
+                        }
+                        $(function () {
+
+                            var dd = new DropDown($('#dd'));
+
+                            $(document).click(function () {
+                                // all dropdowns
+                                $('.wrapper-dropdown-2').removeClass('active');
+                            });
+
+                        });
+                    </script>
                     <div class="clearfix"></div>
                 </div>
-                <div class="clearfix">
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix">
 
-                </div>
+            </div>
             @{
                 Html.RenderAction("Index", "Statistic");
             }
@@ -106,11 +120,12 @@
 
         </div>
     </div>
-    @RenderSection("scripts", required: false)
+
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Content/AdminLayout/js/main.js"></script>
     <script src="~/Content/AdminLayout/js/jquery.min.js"></script>
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

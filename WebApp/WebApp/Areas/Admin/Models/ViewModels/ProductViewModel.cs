@@ -20,8 +20,11 @@ namespace WebApp.Areas.Admin.Models.ViewModels
         
         [DisplayName("Ngày hết hạn")]
         [DataType(DataType.DateTime), Required]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? PublicationDate { get; set; }
+
+        [DisplayName("Ngày hết hạn")]
+        [DataType(DataType.Date)]
+        public DateTime? DisplayPublicationDate => PublicationDate;
 
         [DisplayFormat(DataFormatString = "{0:C0} VNĐ")]
         [Required(ErrorMessage = "Vui lòng nhập giá sản phẩm.")]

@@ -1,5 +1,9 @@
 ﻿@model PagedList.IPagedList<WebApp.Areas.Admin.Models.ViewModels.ManagerOrderViewModel>
 @using PagedList.Mvc
+@{
+    ViewBag.Title = "GetOrderDetail";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
 <h3>Danh sách đơn hàng</h3>
 <br />
 <table class="table">
@@ -73,32 +77,55 @@
             </td>
             <td>
                 @*<i class="glyphicon glyphicon-eye-open viewOrder" id="@item.Id" style="cursor:pointer;"></i>*@
-                @Html.ActionLink("Chi tiết", "GetOrderDetail", new { @id=item.Id},new { @class="btn btn-primary"})
+                @Html.ActionLink("Chi tiết", "GetOrderDetail", new { @id = item.Id }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
 </table>
 <br />
-Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+@*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("GetPagsing", new { page }),
     PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
     {
         HttpMethod = "GET",
         UpdateTargetId = "managerOrder"
-    }))
-@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $(".viewOrder").off().on("click", function () {
-            var id = $(this).attr("id");
-            $.ajax({
-                type: "GET",
-                url: "/Admin/ManagerOrder/GetOrderDetail?id=" + id,
-                dataType: "html",
-                success: function (data) {
-                    $("#managerOrder").html(data);
+    }))*@
+<div class="row">
+    <div class="store-filter clearfix">
+        <span class="store-qty">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</span>
+        @{
+            var currentPage = Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber;
+        }
+        <ul class="store-pagination">
+            <li><a href="@Url.Action("GetPagsing", new { page = ((currentPage - 1) <=0) ? currentPage = Model.PageSize+1 : currentPage -= 1 })"><i class="fa fa-angle-left"></i></a></li>
+            @for (int vip = 1; vip <= Model.PageCount; vip++)
+            {
+                if (vip == (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber))
+                {
+                    <li class="active"><a href="@Url.Action("GetPagsing", new { page = vip })">@vip</a></li>
                 }
+                else
+                {
+                    <li><a href="@Url.Action("GetPagsing", new { page = vip })">@vip</a></li>
+                }
+            }
+            <li><a href="@Url.Action("GetPagsing", new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)+1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-right"></i></a></li>
+        </ul>
+    </div>
+</div>
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".viewOrder").off().on("click", function () {
+                var id = $(this).attr("id");
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/ManagerOrder/GetOrderDetail?id=" + id,
+                    dataType: "html",
+                    success: function (data) {
+                        $("#managerOrder").html(data);
+                    }
+                });
             });
         });
-    });
-</script>*@    
+    </script>*@    

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin,manager,employee")]
     public class StatisticController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();

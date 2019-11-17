@@ -22,14 +22,12 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
-            <th style="max-width:150px;">
+            <th style="width:200px">
                 @Html.DisplayNameFor(model => model.RoleName)
             </th>
+            <th> </th>
         </tr>
     </thread>
 
@@ -50,15 +48,15 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             @*@Html.HiddenFor(m=>item.RoleId)*@
-            <td style="min-width:150px;">
+            <td>
                 @Html.DisplayFor(modelItem => item.RoleName, null, new { @class = "form-control" ,@id="itemEdit" })
-                <a href="/Admin/SetRole/EditRole?id=@item.Id" style="text-align:center;"class="fa fa-edit pull-right" id="EditRole" title="Chỉnh sửa quyền"></a>
+                
+            </td>
+            <td>
+                <a href="/Admin/Users/Edit?id=@item.Id" class="fa fa-edit" id="EditRole" title="Chỉnh sửa"></a>
             </td>
         </tr>
     }

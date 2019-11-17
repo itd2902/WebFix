@@ -13,6 +13,7 @@ namespace WebApp.Areas.Admin.Models.ViewModels
         public int Id { get; set; }
         [DisplayName("Nhân viên")]
         public string UserName { get; set; }
+        public string Password { get; set; }
         [DisplayName("Họ")]
         public string FirstName { get; set; }
         [DisplayName("Tên")]

@@ -31,8 +31,9 @@ body a {
     border: none;
     width: 80%;
     margin-top: 15px;
-    color:white;
+    color: white;
 }
+
 ::placeholder {
     color: white;
 }
@@ -223,14 +224,14 @@ label {
     padding: 0;
     height: 100%;
     width: 22%;
-    position:fixed;
-    z-index:1;
+    position: fixed;
+    z-index: 1;
 }
 
 .content {
     padding: 0;
     width: 76%;
-    margin-left:24%;
+    margin-left: 24%;
 }
 
 .total-content {
@@ -1004,12 +1005,15 @@ i.dollar {
     float: left;
     margin-right: 5%;
 }
+
 .list_of_members h3 {
     color: white;
 }
+
 .icon-text {
     float: left;
 }
+
 .visitors {
     width: 23.5%;
     margin-right: 0%;
@@ -1018,24 +1022,25 @@ i.dollar {
     float: left;
     cursor: pointer;
 }
-.visitors h4, .sales h4, .new-users h4, .orders h4 {
-    color: #fff;
-    text-align: center;
-    font-size: 25px;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
 
-.visitors p, .sales p, .new-users p, .orders p {
-    float: left;
-    color: #fff;
-    font-size: 1.3em;
-    font-weight: 300;
-}
+    .visitors h4, .sales h4, .new-users h4, .orders h4 {
+        color: #fff;
+        text-align: center;
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
 
-.visitors a, .sales a, .users a {
-    float: right;
-}
+    .visitors p, .sales p, .new-users p, .orders p {
+        float: left;
+        color: #fff;
+        font-size: 1.3em;
+        font-weight: 300;
+    }
+
+    .visitors a, .sales a, .users a {
+        float: right;
+    }
 
 i.go {
     width: 25px;
@@ -1653,14 +1658,127 @@ button#focus-single, button#focus-multiple, button#focus-coords, button#focus-in
 button.btn.btn-primary.addProduct {
     margin: 1%;
 }
+
     button.btn.btn-primary.addProduct a {
         color: white;
-        text-decoration:none;
+        text-decoration: none;
     }
+
 .user-trends {
     width: 100%;
     position: relative;
     float: left
+}
+/*----------------------------*\
+	Store
+\*----------------------------*/
+
+.store-filter {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+/*-- Store Sort --*/
+
+.store-sort {
+    display: inline-block;
+}
+
+    .store-sort label {
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-right: 15px;
+    }
+
+/*-- Store Grid --*/
+
+.store-grid {
+    float: right;
+}
+
+    .store-grid li {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        background-color: #FFF;
+        border: 1px solid #E4E7ED;
+        text-align: center;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+        .store-grid li + li {
+            margin-left: 5px;
+        }
+
+        .store-grid li:hover {
+            background-color: #E4E7ED;
+            color: #D10024;
+        }
+
+        .store-grid li.active {
+            background-color: #D10024;
+            border-color: #D10024;
+            color: #FFF;
+            cursor: default;
+        }
+
+        .store-grid li a {
+            display: block;
+        }
+
+/*-- Store Pagination --*/
+
+.store-pagination li {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #FFF;
+    border: 1px solid #E4E7ED;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+    .store-pagination li + li {
+        margin-left: 5px;
+    }
+
+    .store-pagination li:hover {
+        background-color: #E4E7ED;
+        color: #D10024;
+    }
+
+    .store-pagination li.active {
+        background-color: #337AB7;
+        border-color: #337AB7;
+        color: #FFF;
+        font-weight: 500;
+        cursor: default;
+    }
+
+    .store-pagination li a {
+        display: block;
+    }
+
+    .store-pagination li.active a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .store-pagination li:hover a {
+        text-decoration: none;
+    }
+
+.store-qty {
+    margin-right: 30px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    float: left;
 }
 
 #map iframe {
@@ -2629,10 +2747,12 @@ button.btn.btn-primary.addProduct {
         left: 32em;
     }
 }
+
 .container {
-    width:100%;
-    margin-top:1%;
+    width: 100%;
+    margin-top: 1%;
 }
+
 @media screen and (max-width: 480px) {
     .calender-left {
         width: 100%;

@@ -216,16 +216,17 @@ namespace WebApp.Controllers
             {
                 Email = form["email"].ToString();
             }
-            string emailAddress = Email;
-            /*Cảm ơn bạn đã để lại thông tin gmail.Chúng tôi sẽ cập nhật cho bạn những thông tin mới nhất từ trang web.*/
-            string content = "<h1>UETShop xin chào quý khách !</h1></br>";
-            content += "<p>Cảm ơn bạn đã đăng kí nhận thông báo. !</p>";
-            content += "<a href=" + "http://localhost:55666/Home/Index" + ">Quay lại trang chủ</a>";
-            GuiEmail("Thư xác nhận Email từ UETShop !", emailAddress, "uetshop99@gmail.com",
-                "123456a@A", content);
-            if (email != null)
+            if (!string.IsNullOrEmpty(Email))
             {
-                return Json(new { status = true });
+                string emailAddress = Email;
+                /*Cảm ơn bạn đã để lại thông tin gmail.Chúng tôi sẽ cập nhật cho bạn những thông tin mới nhất từ trang web.*/
+                string content = "<h1>UETShop xin chào quý khách !</h1></br>";
+                content += "<p>Cảm ơn bạn đã đăng kí nhận thông báo. !</p>";
+                content += "<a href=" + "http://localhost:55666/Home/Index" + ">Quay lại trang chủ</a>";
+                GuiEmail("Thư xác nhận Email từ UETShop !", emailAddress, "uetshop99@gmail.com",
+                    "123456a@A", content);
+                ViewBag.Notify = "Đăng kí email thành công";
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
         }

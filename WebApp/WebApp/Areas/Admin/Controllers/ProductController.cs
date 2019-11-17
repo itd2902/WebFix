@@ -14,14 +14,11 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();
-        // GET: Products
-        public ActionResult Index()
-        {
-            return View();
-        }
+        [Authorize(Roles= "admin,manager,employee")]
         public ActionResult GetProductPagsing(int? page)
         {
             var product = db.Products.OrderByDescending(o => o.CreatedDate).ToList();
@@ -29,9 +26,10 @@ namespace WebApp.Areas.Admin.Controllers
             var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(product);
             var pageSize = 5;
             var pageNumber = page ?? 1;
-            return PartialView("_GetPagingProduct", productViewModel.ToPagedList(pageNumber, pageSize));
+            return View(productViewModel.ToPagedList(pageNumber, pageSize));
         }
         // GET: Products/Details/5
+        [Authorize(Roles = "admin,manager,employee")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -51,6 +49,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "admin,manager,employee")]
         public ActionResult Create()
         {
             var categories = db.Categories.ToList();
@@ -65,8 +64,9 @@ namespace WebApp.Areas.Admin.Controllers
 
             return View();
         }
-        
+
         // POST: Products/Create
+        [Authorize(Roles = "admin,manager,employee")]
         [HttpPost]
         public ActionResult SaveData(HttpPostedFileBase file,ProductViewModel productViewModel)
         {
@@ -79,15 +79,16 @@ namespace WebApp.Areas.Admin.Controllers
 
                 file.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images/"), fileName));
                 product.UrlImage = "http://localhost:55666/AppFile/Images/" + fileName;
-                db.Products.Add(product);
+                db.Entry(product).State = EntityState.Added;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProductPagsing");
 
             }
             return View();
         }
         // GET: Products/Edit/5
+        [Authorize(Roles = "admin,manager,employee")]
         public ActionResult Edit(int? id)
         {
             var categories = db.Categories.ToList();
@@ -121,6 +122,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Products/Edit/5
+        [Authorize(Roles = "admin,manager,employee")]
         [HttpPost]
         public ActionResult Edit(HttpPostedFileBase file,ProductViewModel productViewModel)
         {
@@ -135,10 +137,12 @@ namespace WebApp.Areas.Admin.Controllers
                 
                 Mapper.Map(productViewModel, product);
                 product.UrlImage = "http://localhost:55666/AppFile/Images/" + fileName;
+                product.UpdatedBy = ((User)Session["UserName"]).UserName;
+                product.UpdatedDate = DateTime.Now;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProductPagsing");
             }
             else
             {
@@ -147,11 +151,12 @@ namespace WebApp.Areas.Admin.Controllers
                 product.UrlImage = Session["img"].ToString();
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProductPagsing");
             }
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "admin,manager,employee")]
         public ActionResult Delete(int? id)
         {
 
@@ -172,6 +177,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Products/Delete/5
+        [Authorize(Roles = "admin,manager,employee")]
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -182,10 +188,9 @@ namespace WebApp.Areas.Admin.Controllers
                 {
                     return HttpNotFound();
                 }
-
-                product.IsDeleted = true;
+                db.Entry(product).State = EntityState.Deleted;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("GetProductPagsing");
             }
 
             return View();

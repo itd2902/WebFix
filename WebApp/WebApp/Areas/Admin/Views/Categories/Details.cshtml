@@ -25,10 +25,14 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <dd>
+            <div>
+                <br />
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+            
 
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class="btn btn-warning"}) 
-    @Html.ActionLink("Back to List", "Index",null,new { @class="btn btn-primary"})
-</p>

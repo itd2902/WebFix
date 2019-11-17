@@ -1,9 +1,12 @@
 ﻿@model PagedList.IPagedList<WebApp.Areas.Admin.Models.ViewModels.ProductViewModel>
 @using PagedList.Mvc
-
+@{
+    ViewBag.Title = "GetOrderDetail";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
 <br />
 <div>
-        @Html.ActionLink("Thêm mới", "Create",null,new { @class="btn btn-primary"})
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
 </div>
 <br />
 
@@ -46,7 +49,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PublicationDate)
+                    @Html.DisplayFor(modelItem => item.DisplayPublicationDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
@@ -76,12 +79,35 @@
     </tbody>
 </table>
 <br />
-<div class="pull-left">
-    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("GetProductPagsing", new { page }),
-        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
-        {
-            HttpMethod = "GET",
-            UpdateTargetId = "productList"
-        }))
+@*<div class="pull-left">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("GetProductPagsing", new { page }),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "productList"
+            }))
+    </div>*@
+<div class="row">
+    <div class="store-filter clearfix">
+        <span class="store-qty">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</span>
+        @{
+            var currentPage = Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber;
+        }
+        <ul class="store-pagination">
+            <li><a href="@Url.Action("GetProductPagsing", new { page = ((currentPage - 1) <=0) ? currentPage = Model.PageSize+1 : currentPage -= 1 })"><i class="fa fa-angle-left"></i></a></li>
+            @for (int vip = 1; vip <= Model.PageCount; vip++)
+            {
+                if (vip == (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber))
+                {
+                    <li class="active"><a href="@Url.Action("GetProductPagsing", new { page = vip })">@vip</a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("GetProductPagsing", new { page = vip })">@vip</a></li>
+                }
+            }
+            <li><a href="@Url.Action("GetProductPagsing", new { page = (Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)+1, Id = ViewBag.CategoryId })"><i class="fa fa-angle-right"></i></a></li>
+        </ul>
+    </div>
 </div>

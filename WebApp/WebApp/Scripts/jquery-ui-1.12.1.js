@@ -606,10 +606,10 @@ $.Widget.prototype = {
 					.apply( instance, arguments );
 			}
 
-			// Copy the int so direct unbinding works
+			// Copy the guid so direct unbinding works
 			if ( typeof handler !== "string" ) {
-				handlerProxy.int = handler.int =
-					handler.int || handlerProxy.int || $.int++;
+				handlerProxy.guid = handler.guid =
+					handler.guid || handlerProxy.guid || $.guid++;
 			}
 
 			var match = event.match( /^([\w:-]*)\s*(.*)$/ );

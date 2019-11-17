@@ -4,15 +4,6 @@
     ViewBag.Title = "Thể loại";
     Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
 }
-<div class="container-fluid danhmuc">
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Sản phẩm", "Index", "Product")</li>
-            <li>@Html.ActionLink("Nhà sản xuất", "Index", "Manufacture")</li>
-            <li>@Html.ActionLink("Nhà cung cấp", "Index", "Supplier")</li>
-        </ul>
-    </div>
-</div>
 <h2>THỂ LOẠI</h2>
 @if (Model.Count() < 3)
 {

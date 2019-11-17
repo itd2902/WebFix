@@ -13,7 +13,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,QuanLy")]
+    [Authorize(Roles = "admin")]
     public class ManufactureController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();
@@ -26,6 +26,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,6 +45,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
 
@@ -51,6 +53,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Manufacture/Create
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Create(ManufactureViewModel manufactureViewModel)
         {
@@ -67,6 +70,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +89,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Manufacture/Edit/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Edit(ManufactureViewModel manufactureViewModel)
         {
@@ -106,6 +111,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // GET: Manufacture/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +130,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Manufacture/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Delete(int id)
         {

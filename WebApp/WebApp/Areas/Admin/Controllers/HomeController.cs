@@ -61,7 +61,7 @@ namespace WebApp.Areas.Admin.Controllers
                 }
                 AuthorizeUser(username, role);
                 Session["UserName"] = username;
-                return RedirectToAction("Index","Product");
+                return RedirectToAction("GetProductPagsing", "Product");
             }
             ViewBag.ThongBao="Tài khoản hoặc mật khẩu không chính xác !";
             return View();

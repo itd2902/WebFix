@@ -15,7 +15,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public class SetRoleController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();

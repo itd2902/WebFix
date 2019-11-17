@@ -13,6 +13,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CategoriesController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();

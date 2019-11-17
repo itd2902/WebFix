@@ -33,10 +33,14 @@
         <dd>
             @Html.DisplayFor(model => model.Phone)
         </dd>
+        <dd>
+            <div>
+                <br />
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-danger" })
+            </div>
 
+
+        </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

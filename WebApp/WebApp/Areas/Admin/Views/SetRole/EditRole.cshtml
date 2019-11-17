@@ -33,46 +33,44 @@
                 <th>
                     @Html.DisplayNameFor(model => model.RoleName)
                 </th>
+                <th></th>
             </tr>
         </thread>
 
         @foreach (var item in lstUser)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                @if (item.Id == Model.Id)
-                {
-                <td style="max-width:150px;">
-                    @Html.Hidden("Id", item.Id)
-                    @Html.DropDownList("RoleId", null, new { @class = "form-control" })
-                    <input type="submit" class="btn btn-success" id="submitEditRole" value="Lưu" />
-                    <input type="button" class="btn btn-danger" value="Hủy" onclick="location.href='@Url.Content("/Admin/SetRole/Index")'"/>
-                </td>
-                }
-                else
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Role.Name)
-                    </td>
-                }
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.Name)
+        </td>
+        @*@if (item.Id == Model.Id)
+        {
+            <td style="width:250px">
+                @Html.Hidden("Id", item.Id)
+                @Html.DropDownList("RoleId", null, new { @class = "form-control" })
+                <input type="submit" class="btn btn-success" id="submitEditRole" value="Lưu" />
+                <input type="button" class="btn btn-danger" value="Hủy" onclick="location.href='@Url.Content("/Admin/SetRole/Index")'" />
+            </td>
+        }*@
+    </tr>
         }
 
     </table>

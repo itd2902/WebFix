@@ -13,6 +13,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="admin,manager,employee")]
     public class ManagerOrderController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();
@@ -22,7 +23,7 @@ namespace WebApp.Areas.Admin.Controllers
             return View();
             
         }
-        public PartialViewResult GetPagsing(int? page)
+        public ActionResult GetPagsing(int? page)
         {
             var lstOrder = db.Orders.Join(db.Customers, o => o.CustomerId, c => c.Id, (o, c) => new
             {
@@ -48,7 +49,7 @@ namespace WebApp.Areas.Admin.Controllers
             }
             int pageSize = 5;
             int pageNumber = page ?? 1;
-            return PartialView("_ManagerOrderPartialView",managerOrders.ToPagedList(pageNumber, pageSize));
+            return View(managerOrders.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult GetOrderDetail(int id)
         {

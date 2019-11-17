@@ -10,6 +10,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
+    [Authorize(Roles="admin")]
     public class UsersController : Controller
     {
         private EcommerceDbContext db = new EcommerceDbContext();
@@ -66,11 +67,14 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.RoleId = new SelectList(db.Roles.ToList(), "Id", "Name", user.RoleId);
             return View(user);
         }
 
@@ -79,13 +83,13 @@ namespace WebApp.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserName,Password,Email,Address,Age,PhoneNumber,RoleId,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy,Status,IsDeleted")] User user)
+        public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","SetRole");
             }
             return View(user);
         }

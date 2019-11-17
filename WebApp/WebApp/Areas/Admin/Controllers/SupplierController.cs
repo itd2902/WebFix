@@ -12,7 +12,7 @@ using WebApp.Areas.Admin.Models.ViewModels;
 
 namespace WebApp.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,QuanLy")]
+    [Authorize(Roles = "admin")]
     public class SupplierController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();
@@ -48,7 +48,7 @@ namespace WebApp.Areas.Admin.Controllers
         #endregion
 
         #region Create
-
+        [Authorize(Roles = "admin")]
         // GET: Supplier/Create
         public ActionResult Create()
         {
@@ -57,6 +57,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Supplier/Create
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Create(SupplierViewModel supplierViewModel)
         {
@@ -75,6 +76,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         #region Edit
         // GET: Supplier/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,6 +95,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Supplier/Edit/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Edit(SupplierViewModel supplierViewModel)
         {
@@ -120,6 +123,7 @@ namespace WebApp.Areas.Admin.Controllers
 
         #region Delete
         // GET: Supplier/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,6 +142,7 @@ namespace WebApp.Areas.Admin.Controllers
         }
 
         // POST: Supplier/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Delete(int id)
         {
