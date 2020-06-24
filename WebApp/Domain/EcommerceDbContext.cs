@@ -13,7 +13,8 @@ namespace Domain
         public EcommerceDbContext() : base("EcommerceDbContext")
         {
             //Database.SetInitializer(new DropCreateDatabaseAlways<EcommerceDbContext>());
-            // Database.SetInitializer(new EcommerceDbContextSeed());            
+            // Database.SetInitializer(new EcommerceDbContextSeed());    
+            Database.SetInitializer(new UniDBInitializer<EcommerceDbContext>());
         }
         
         public DbSet<Category> Categories { get; set; }

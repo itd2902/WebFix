@@ -19,15 +19,16 @@ namespace WebApp.Controllers
 
         public ActionResult Index()
         {
-            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel
-            {
-                Id = s.Id,
-                Name = s.Name,
-                Price = s.Price,
-                UrlImage = s.UrlImage,
-                CategoryName = s.Category.Name
-            }).Take(5).ToList();
 
+            //var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel
+            //{
+            //    Id = s.Id,
+            //    Name = s.Name,
+            //    Price = s.Price,
+            //    UrlImage = s.UrlImage,
+            //    CategoryName = s.Category.Name
+            //}).Take(5).ToList();
+            var productList = db.Products.ToList();
             ViewBag.ProductList = db.Products.OrderBy(p => p.CreatedDate).Select(s => new ProductViewModel
             {
                 Id = s.Id,
