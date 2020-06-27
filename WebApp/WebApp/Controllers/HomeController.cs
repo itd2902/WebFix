@@ -20,15 +20,14 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
 
-            //var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel
-            //{
-            //    Id = s.Id,
-            //    Name = s.Name,
-            //    Price = s.Price,
-            //    UrlImage = s.UrlImage,
-            //    CategoryName = s.Category.Name
-            //}).Take(5).ToList();
-            var productList = db.Products.ToList();
+            var productList = db.Products.OrderByDescending(p => p.CreatedDate).Select(s => new ProductViewModel
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Price = s.Price,
+                UrlImage = s.UrlImage,
+                CategoryName = s.Category.Name
+            }).Take(5).ToList();
             ViewBag.ProductList = db.Products.OrderBy(p => p.CreatedDate).Select(s => new ProductViewModel
             {
                 Id = s.Id,
@@ -101,7 +100,6 @@ namespace WebApp.Controllers
             if (user != null)
             {
                 Session["username"] = user;
-                Session["GioHang"] = null;
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.Error = "Thông tin tài khoản hoặc mật khẩu không chính xác !";

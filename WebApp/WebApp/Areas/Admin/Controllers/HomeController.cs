@@ -2,6 +2,7 @@
 using Domain;
 using Domain.Entities;
 using PagedList;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,20 @@ using WebApp.Models.ViewDto;
 
 namespace WebApp.Areas.Admin.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         EcommerceDbContext db = new EcommerceDbContext();
         // GET: Admin/Home
         public ActionResult Index()
         {
+            using (var log = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger())
+            {
+                log.Information("Hello, Serilog!");
+                log.Warning("Goodbye, Serilog.");
+};
             DateTime dateTime = DateTime.Now;
             var monthNow = dateTime.Month;
             var yearNow = dateTime.Year;
@@ -44,6 +52,10 @@ namespace WebApp.Areas.Admin.Controllers
         //login
         public ActionResult Login()
         {
+            if (Session["UserName"] != null)
+            {
+                return RedirectToAction("Index");
+            }
             return View();
         }
         [HttpPost]
@@ -52,10 +64,10 @@ namespace WebApp.Areas.Admin.Controllers
             var username = user.UserName;
             var password = user.Password;
             User myuser = db.Users.SingleOrDefault(m => m.UserName.Equals(username) && m.Password.Equals(password));
-            if(myuser!=null)
+            if (myuser != null)
             {
-                var role = db.Roles.Where(r => r.Id==myuser.RoleId).Select(s=>s.Name).FirstOrDefault();
-                if(role == null)
+                var role = db.Roles.Where(r => r.Id == myuser.RoleId).Select(s => s.Name).FirstOrDefault();
+                if (role == null)
                 {
                     return RedirectToAction("NotAccessAuthorize");
                 }
@@ -63,7 +75,7 @@ namespace WebApp.Areas.Admin.Controllers
                 Session["UserName"] = username;
                 return RedirectToAction("GetProductPagsing", "Product");
             }
-            ViewBag.ThongBao="Tài khoản hoặc mật khẩu không chính xác !";
+            ViewBag.ThongBao = "Tài khoản hoặc mật khẩu không chính xác !";
             return View();
         }
         public ActionResult NotAccessAuthorize()
@@ -76,7 +88,7 @@ namespace WebApp.Areas.Admin.Controllers
             FormsAuthentication.SignOut();//hủy cookie và đăng xuất
             return RedirectToAction("Login");
         }
-        public void AuthorizeUser(string accountName,string role)
+        public void AuthorizeUser(string accountName, string role)
         {
             FormsAuthentication.Initialize();//khởi tạo 
             var ticket = new FormsAuthenticationTicket(1,
@@ -89,7 +101,7 @@ namespace WebApp.Areas.Admin.Controllers
 
                 );
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));//mã hóa cookie khi đưa lên client
-            if(ticket.IsPersistent)
+            if (ticket.IsPersistent)
             {
                 cookie.Expires = ticket.Expiration;
             }
@@ -119,7 +131,7 @@ namespace WebApp.Areas.Admin.Controllers
             int pageSize = 2;
             int pageNumber = (page ?? 1);
             ViewBag.KeyWord = keyword;
-            return View("_SearchPartialView",lstProductViewModel.ToPagedList(pageNumber, pageSize));
+            return View("_SearchPartialView", lstProductViewModel.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult CustomPage()
         {

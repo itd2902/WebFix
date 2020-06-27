@@ -12,7 +12,7 @@
         <ul class="header-links pull-right">
             @{
 
-                if (Session["username"] != null && Session["username"].ToString() != "")
+                if (Session["username"] != null)
                 {
                     User user = (User)Session["username"];
                     <li><a href="/Account/GetUser"> Xin chào @user.UserName !</a></li>

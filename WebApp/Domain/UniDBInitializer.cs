@@ -73,35 +73,40 @@ namespace Domain
                         Name = "Laptop 1",
                         Price = 2000,
                         ProductInStock = 100,
-                        CategoryId = context.Categories.FirstOrDefault().Id
+                        CategoryId = context.Categories.FirstOrDefault().Id,
+                        UrlImage="https://hanoicomputercdn.com/media/product/250_48820_dell_gaming_g3_3590__8_.png"
                     },
                      new Product
                      {
                          Name = "Laptop 2",
                          Price = 2000,
                          ProductInStock = 100,
-                         CategoryId = context.Categories.FirstOrDefault().Id
+                         CategoryId = context.Categories.FirstOrDefault().Id,
+                         UrlImage="https://hanoicomputercdn.com/media/product/250_48820_dell_gaming_g3_3590__8_.png"
                      },
                       new Product
                       {
                           Name = "Laptop 3",
                           Price = 2000,
                           ProductInStock = 100,
-                          CategoryId = context.Categories.FirstOrDefault().Id
+                          CategoryId = context.Categories.FirstOrDefault().Id,
+                          UrlImage="https://hanoicomputercdn.com/media/product/250_48820_dell_gaming_g3_3590__8_.png"
                       },
                        new Product
                        {
                            Name = "Laptop 4",
                            Price = 2000,
                            ProductInStock = 100,
-                           CategoryId = context.Categories.FirstOrDefault().Id
+                           CategoryId = context.Categories.FirstOrDefault().Id,
+                           UrlImage="https://hanoicomputercdn.com/media/product/250_48820_dell_gaming_g3_3590__8_.png"
                        },
                         new Product
                         {
                             Name = "Laptop 5",
                             Price = 2000,
                             ProductInStock = 100,
-                            CategoryId = context.Categories.FirstOrDefault().Id
+                            CategoryId = context.Categories.FirstOrDefault().Id,
+                            UrlImage="https://hanoicomputercdn.com/media/product/250_48820_dell_gaming_g3_3590__8_.png"
                         }
                     }
                     );
